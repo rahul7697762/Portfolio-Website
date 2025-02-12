@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.157.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    <div id="canvas-container"></div>
+    
+    <nav class="navigation">
+        <div class="nav-brand"></div>
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+        </ul>
+    </nav>
+    
+    <main class="content">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="profile-image">
+                    <img src="pf.jpg" alt="Rahul's Profile Picture">
+                </div>
+                <div class="hero-text">
+                    <h1>Rahul</h1>
+                    <p class="typing-text">Machine Learning Enthusiast | Frontend Web Developer</p>
+                    <div class="hero-tags">
+                        <span class="tag"><i class="fas fa-robot"></i> Aspiring AI & ML Engineer</span>
+                        <span class="tag"><i class="fas fa-code"></i> Frontend Developer</span>
+                        <span class="tag achievement"><i class="fas fa-star"></i> 4⭐ in C++, Python, SQL</span>
+                    </div>
+                    <div class="skills-pills">
+                        <span class="pill">HTML<div class="skill-progress"><div class="progress" style="width: 90%"></div></div></span>
+                        <span class="pill">CSS<div class="skill-progress"><div class="progress" style="width: 85%"></div></div></span>
+                        <span class="pill">Python<div class="skill-progress"><div class="progress" style="width: 95%"></div></div></span>
+                        <span class="pill">C<div class="skill-progress"><div class="progress" style="width: 80%"></div></div></span>
+                        <span class="pill">DBMS<div class="skill-progress"><div class="progress" style="width: 85%"></div></div></span>
+                        <span class="pill">MySQL<div class="skill-progress"><div class="progress" style="width: 90%"></div></div></span>
+                        <span class="pill">DSA<div class="skill-progress"><div class="progress" style="width: 85%"></div></div></span>
+                        <span class="pill">Advanced C++<div class="skill-progress"><div class="progress" style="width: 95%"></div></div></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p class="about-intro">
+                    As an aspiring AI and Machine Learning Engineer with a strong foundation in Frontend Development, I combine technical expertise with creative problem-solving. My proficiency spans across multiple programming languages and databases, highlighted by my 4-star ratings in C++, Python, and SQL. Currently exploring Data Structures & Algorithms and Advanced C++, I'm passionate about creating intelligent solutions that bridge the gap between complex algorithms and user-friendly interfaces.
+                </p>
+                
+                <div class="about-details">
+                    <div class="about-section education">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div class="education-card">
+                            <h4>B.Tech in Computer Science</h4>
+                            <p class="university">Lovely Professional University</p>
+                            <p class="duration"><i class="far fa-calendar-alt"></i> 2023 - 2027</p>
+                            <div class="education-tags">
+                                <span>Computer Science</span>
+                                <span>Engineering</span>
+                                <span>Technology</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h3><i class="fas fa-brain"></i> Machine Learning Expertise</h3>
+                        <p>
+                            My journey in ML involves developing sophisticated algorithms for real-world problems. I work with cutting-edge technologies like TensorFlow and PyTorch to create intelligent solutions that can analyze data, make predictions, and automate complex tasks.
+                        </p>
+                    </div>
+
+                    <div class="about-section">
+                        <h3><i class="fas fa-code"></i> Frontend Development</h3>
+                        <p>
+                            On the frontend side, I craft responsive and dynamic web applications using modern technologies like React.js. I'm passionate about creating seamless user experiences with clean, efficient code and innovative design solutions.
+                        </p>
+                    </div>
+
+                    <div class="about-section">
+                        <h3><i class="fas fa-rocket"></i> Innovation & Problem Solving</h3>
+                        <p>
+                            I thrive on tackling challenging problems and turning innovative ideas into reality. Whether it's optimizing ML models or building intuitive user interfaces, I'm committed to creating solutions that make a meaningful impact.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-highlights">
+                    <div class="highlight">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Computer Science Background</span>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Full-Stack Capabilities</span>
+                    </div>
+                    <div class="highlight">
+                        <i class="fas fa-users"></i>
+                        <span>Team Collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills" id="skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo" class="skill-icon">
+                            Python
+                        </li>
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C logo" class="skill-icon">
+                            C
+                        </li>
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java logo" class="skill-icon">
+                            Java
+                        </li>
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ logo" class="skill-icon">
+                            C++
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i> Web Technologies</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo" class="skill-icon">
+                            HTML5
+                        </li>
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo" class="skill-icon">
+                            CSS3
+                        </li>
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js logo" class="skill-icon">
+                            React.js
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git logo" class="skill-icon">
+                            Git
+                        </li>
+                        <li>
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow logo" class="skill-icon">
+                            TensorFlow
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects" id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="shine"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fas fa-seedling project-icon"></i>
+                            <h3>Crop Guidance System</h3>
+                            <span class="project-status">In Progress</span>
+                        </div>
+                        <p class="project-description">
+                            An intelligent ML-powered system currently under development that will provide guidance for crop selection and management based on soil conditions, weather patterns, and historical data. Implementing advanced algorithms to help farmers make informed decisions for optimal crop yield.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Data Analysis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="shine"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fas fa-code project-icon"></i>
+                            <h3>Portfolio Website</h3>
+                        </div>
+                        <p class="project-description">
+                            A modern 3D portfolio website showcasing my skills and projects. Features interactive animations, responsive design, and seamless user experience.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Three.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/rahul7697762" class="project-link">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="shine"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fas fa-chalkboard-teacher project-icon"></i>
+                            <h3>Kids Tutor</h3>
+                        </div>
+                        <p class="project-description">
+                            An interactive educational platform designed to make learning fun and engaging for children. Leverages Google's Gemini AI for intelligent tutoring, integrates YouTube API for educational content, and uses MongoDB for data persistence. Features a modern React-based interface with personalized learning experiences.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Gemini AI</span>
+                            <span class="tech-tag">YouTube API</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://kid-tutor-5etq.vercel.app/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="section certificates-section">
+            <div class="section-header">
+                <h2>Certificates</h2>
+                <p>My Professional Certifications and Technical Achievements</p>
+            </div>
+            <div class="slider-container">
+                <button class="slider-button prev" aria-label="Previous certificate">❮</button>
+                <div class="certificates-slider">
+                    <div class="certificate-card">
+                        <img src="Certificates/n1.png" alt="Networking Certificate">
+                        <div class="certificate-details">
+                            <h3>Computer Networking</h3>
+                            <p>Professional Networking Certification</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <img src="Certificates/python.png" alt="Python Certificate">
+                        <div class="certificate-details">
+                            <h3>Python Programming</h3>
+                            <p>Advanced Python Development</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <img src="Certificates/sql.png" alt="SQL Certificate">
+                        <div class="certificate-details">
+                            <h3>SQL Database</h3>
+                            <p>Database Management & SQL</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <img src="Certificates/cpp.png" alt="C++ Certificate">
+                        <div class="certificate-details">
+                            <h3>C++ Programming</h3>
+                            <p>Advanced C++ Development</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <img src="Certificates/dsa.png" alt="DSA Certificate">
+                        <div class="certificate-details">
+                            <h3>Data Structures & Algorithms</h3>
+                            <p>Advanced DSA Certification</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <img src="Certificates/c.png" alt="C Programming Certificate">
+                        <div class="certificate-details">
+                            <h3>C Programming</h3>
+                            <p>Core C Programming</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <img src="Certificates/n2.png" alt="Internetworking Certificate">
+                        <div class="certificate-details">
+                            <h3>Internetworking Technologies</h3>
+                            <p>Advanced Network Infrastructure</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-button next" aria-label="Next certificate">❯</button>
+            </div>
+            <div class="slider-dots"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certificates">Certificates</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/rahul1232/" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/yourgithub" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Let's Work Together</h3>
+                <p>Open for collaborations and opportunities</p>
+                <a href="mailto:your.email@example.com" class="footer-cta">Get in Touch</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Rahul. All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-code"></i></p>
+        </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
