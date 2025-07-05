@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahul's Portfolio</title>
+    <title>Rahul's Portfolio - AI & ML Engineer</title>
+    <meta name="description" content="Portfolio of Rahul - Aspiring AI & ML Engineer and Frontend Developer with expertise in Python, C++, React.js and Machine Learning">
+    <meta name="keywords" content="AI, Machine Learning, Frontend Developer, Python, C++, React.js, Portfolio">
+    <meta name="author" content="Rahul">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Rahul's Portfolio - AI & ML Engineer">
+    <meta property="og:description" content="Aspiring AI & ML Engineer and Frontend Developer">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./pf.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="./pf.jpg" as="image">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <script type="importmap">
         {
             "imports": {
@@ -16,36 +38,77 @@
     </script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Loading Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
     <div class="scroll-progress"></div>
+    
+    <!-- Background Canvas -->
     <div id="canvas-container"></div>
     
+    <!-- Navigation -->
     <nav class="navigation">
-        <div class="nav-brand"></div>
-        <button class="menu-toggle" aria-label="Toggle navigation menu">
-            <span class="hamburger"></span>
-        </button>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certificates">Certificates</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🚀</span>
+                <span class="brand-text">Rahul</span>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home" data-section="home">Home</a></li>
+                <li><a href="#about" data-section="about">About</a></li>
+                <li><a href="#skills" data-section="skills">Skills</a></li>
+                <li><a href="#projects" data-section="projects">Projects</a></li>
+                <li><a href="#certificates" data-section="certificates">Certificates</a></li>
+                <li><a href="#contact" data-section="contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
     
+    <!-- Main Content -->
     <main class="content">
-        <section class="hero">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
             <div class="hero-content">
                 <div class="profile-image">
-                    <img src="pf.jpg" alt="Rahul's Profile Picture">
+                    <img src="pf.jpg" alt="Rahul's Profile Picture" loading="eager">
+                    <div class="profile-ring"></div>
                 </div>
                 <div class="hero-text">
-                    <h1>Rahul</h1>
+                    <h1>
+                        <span class="greeting">Hello, I'm</span>
+                        <span class="name">Rahul</span>
+                    </h1>
                     <p class="typing-text">Machine Learning Enthusiast | Frontend Web Developer</p>
                     <div class="hero-tags">
                         <span class="tag"><i class="fas fa-robot"></i> Aspiring AI & ML Engineer</span>
                         <span class="tag"><i class="fas fa-code"></i> Frontend Developer</span>
                         <span class="tag achievement"><i class="fas fa-star"></i> 4⭐ in C++, Python, SQL</span>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#contact" class="cta-button primary">
+                            <i class="fas fa-envelope"></i>
+                            Get In Touch
+                        </a>
+                        <a href="#projects" class="cta-button secondary">
+                            <i class="fas fa-eye"></i>
+                            View Work
+                        </a>
+                        <a href="./resume.pdf" class="cta-button outline" download>
+                            <i class="fas fa-download"></i>
+                            Download CV
+                        </a>
                     </div>
                     <div class="skills-pills">
                         <span class="pill">HTML<div class="skill-progress"><div class="progress" style="width: 90%"></div></div></span>
@@ -59,14 +122,45 @@
                     </div>
                 </div>
             </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
         </section>
 
+        <!-- About Section -->
         <section class="about" id="about">
-            <h2>About Me</h2>
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p class="section-subtitle">Passionate about creating intelligent solutions</p>
+            </div>
             <div class="about-content">
-                <p class="about-intro">
-                    As an aspiring AI and Machine Learning Engineer with a strong foundation in Frontend Development, I combine technical expertise with creative problem-solving. My proficiency spans across multiple programming languages and databases, highlighted by my 4-star ratings in C++, Python, and SQL. Currently exploring Data Structures & Algorithms and Advanced C++, I'm passionate about creating intelligent solutions that bridge the gap between complex algorithms and user-friendly interfaces.
-                </p>
+                <div class="about-intro">
+                    <p>
+                        As an aspiring AI and Machine Learning Engineer with a strong foundation in Frontend Development, I combine technical expertise with creative problem-solving. My proficiency spans across multiple programming languages and databases, highlighted by my 4-star ratings in C++, Python, and SQL. Currently exploring Data Structures & Algorithms and Advanced C++, I'm passionate about creating intelligent solutions that bridge the gap between complex algorithms and user-friendly interfaces.
+                    </p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="7">0</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="2">0</div>
+                        <div class="stat-label">Years Learning</div>
+                    </div>
+                </div>
                 
                 <div class="about-details">
                     <div class="about-section education">
@@ -122,76 +216,188 @@
             </div>
         </section>
 
+        <!-- Skills Section -->
         <section class="skills" id="skills">
-            <h2>Skills</h2>
+            <div class="section-header">
+                <h2>Skills & Technologies</h2>
+                <p class="section-subtitle">My technical expertise and proficiency levels</p>
+            </div>
             <div class="skills-container">
                 <div class="skill-category">
                     <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                    <ul class="skills-list">
-                        <li>
+                    <div class="skills-grid">
+                        <div class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo" class="skill-icon">
-                            Python
-                        </li>
-                        <li>
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C logo" class="skill-icon">
-                            C
-                        </li>
-                        <li>
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java logo" class="skill-icon">
-                            Java
-                        </li>
-                        <li>
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="95"></div>
+                                </div>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ logo" class="skill-icon">
-                            C++
-                        </li>
-                    </ul>
+                            <div class="skill-info">
+                                <span class="skill-name">C++</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="95"></div>
+                                </div>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C logo" class="skill-icon">
+                            <div class="skill-info">
+                                <span class="skill-name">C</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="80"></div>
+                                </div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java logo" class="skill-icon">
+                            <div class="skill-info">
+                                <span class="skill-name">Java</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="75"></div>
+                                </div>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="skill-category">
                     <h3><i class="fas fa-globe"></i> Web Technologies</h3>
-                    <ul class="skills-list">
-                        <li>
+                    <div class="skills-grid">
+                        <div class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo" class="skill-icon">
-                            HTML5
-                        </li>
-                        <li>
+                            <div class="skill-info">
+                                <span class="skill-name">HTML5</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="90"></div>
+                                </div>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo" class="skill-icon">
-                            CSS3
-                        </li>
-                        <li>
+                            <div class="skill-info">
+                                <span class="skill-name">CSS3</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="85"></div>
+                                </div>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js logo" class="skill-icon">
-                            React.js
-                        </li>
-                    </ul>
+                            <div class="skill-info">
+                                <span class="skill-name">React.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="80"></div>
+                                </div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo" class="skill-icon">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="85"></div>
+                                </div>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="skill-category">
                     <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
-                    <ul class="skills-list">
-                        <li>
+                    <div class="skills-grid">
+                        <div class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git logo" class="skill-icon">
-                            Git
-                        </li>
-                        <li>
+                            <div class="skill-info">
+                                <span class="skill-name">Git</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="85"></div>
+                                </div>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow logo" class="skill-icon">
-                            TensorFlow
-                        </li>
-                    </ul>
+                            <div class="skill-info">
+                                <span class="skill-name">TensorFlow</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="75"></div>
+                                </div>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL logo" class="skill-icon">
+                            <div class="skill-info">
+                                <span class="skill-name">MySQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="90"></div>
+                                </div>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js logo" class="skill-icon">
+                            <div class="skill-info">
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-skill="70"></div>
+                                </div>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Projects Section -->
         <section class="projects" id="projects">
-            <h2>Projects</h2>
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p class="section-subtitle">Showcasing my latest work and innovations</p>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+            </div>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="shine"></div>
+                <div class="project-card" data-category="ml">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Crop Guidance System" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="project-content">
                         <div class="project-header">
                             <i class="fas fa-seedling project-icon"></i>
                             <h3>Crop Guidance System</h3>
-                            <span class="project-status">In Progress</span>
+                            <span class="project-status in-progress">In Progress</span>
                         </div>
                         <p class="project-description">
-                            An intelligent ML-powered system currently under development that will provide guidance for crop selection and management based on soil conditions, weather patterns, and historical data. Implementing advanced algorithms to help farmers make informed decisions for optimal crop yield.
+                            An intelligent ML-powered system that provides guidance for crop selection and management based on soil conditions, weather patterns, and historical data. Implementing advanced algorithms to help farmers make informed decisions for optimal crop yield.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -201,50 +407,64 @@
                             <span class="tech-tag">Machine Learning</span>
                             <span class="tech-tag">Data Analysis</span>
                         </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="shine"></div>
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Portfolio Website" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/rahul7697762" class="project-link" aria-label="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="project-content">
                         <div class="project-header">
                             <i class="fas fa-code project-icon"></i>
                             <h3>Portfolio Website</h3>
+                            <span class="project-status completed">Completed</span>
                         </div>
                         <p class="project-description">
-                            A modern 3D portfolio website showcasing my skills and projects. Features interactive animations, responsive design, and seamless user experience.
+                            A modern 3D portfolio website showcasing my skills and projects. Features interactive animations, responsive design, and seamless user experience with Three.js integration.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS3</span>
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">Three.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/rahul7697762" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
+                            <span class="tech-tag">Vite</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="shine"></div>
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kids Tutor" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://kid-tutor-5etq.vercel.app/" target="_blank" class="project-link" aria-label="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="project-content">
                         <div class="project-header">
                             <i class="fas fa-chalkboard-teacher project-icon"></i>
                             <h3>Kids Tutor</h3>
+                            <span class="project-status completed">Completed</span>
                         </div>
                         <p class="project-description">
-                            An interactive educational platform designed to make learning fun and engaging for children. Leverages Google's Gemini AI for intelligent tutoring, integrates YouTube API for educational content, and uses MongoDB for data persistence. Features a modern React-based interface with personalized learning experiences.
+                            An interactive educational platform designed to make learning fun and engaging for children. Leverages Google's Gemini AI for intelligent tutoring, integrates YouTube API for educational content, and uses MongoDB for data persistence.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">React.js</span>
@@ -255,87 +475,141 @@
                             <span class="tech-tag">YouTube API</span>
                             <span class="tech-tag">MongoDB</span>
                         </div>
-                        <div class="project-links">
-                            <a href="https://kid-tutor-5etq.vercel.app/" target="_blank" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ml">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Analysis Dashboard" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fas fa-chart-line project-icon"></i>
+                            <h3>Data Analysis Dashboard</h3>
+                            <span class="project-status completed">Completed</span>
+                        </div>
+                        <p class="project-description">
+                            A comprehensive data visualization dashboard built with Python and Streamlit. Features interactive charts, real-time data processing, and machine learning insights for business intelligence.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Plotly</span>
+                            <span class="tech-tag">Scikit-learn</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="certificates" class="section certificates-section">
+        <!-- Certificates Section -->
+        <section id="certificates" class="certificates-section">
             <div class="section-header">
-                <h2>Certificates</h2>
-                <p>My Professional Certifications and Technical Achievements</p>
+                <h2>Certificates & Achievements</h2>
+                <p class="section-subtitle">My Professional Certifications and Technical Achievements</p>
             </div>
             <div class="slider-container">
                 <button class="slider-button prev" aria-label="Previous certificate">❮</button>
                 <div class="certificates-slider">
                     <div class="certificate-card">
-                        <img src="n1.png" alt="Networking Certificate">
+                        <img src="n1.png" alt="Networking Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Computer Networking</h3>
                             <p>Professional Networking Certification</p>
                             <p class="certificate-date">2024</p>
+                            <div class="certificate-badge">
+                                <i class="fas fa-certificate"></i>
+                                Certified
+                            </div>
                         </div>
                     </div>
 
                     <div class="certificate-card">
-                        <img src="python.png" alt="Python Certificate">
+                        <img src="python.png" alt="Python Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Python Programming</h3>
                             <p>Advanced Python Development</p>
                             <p class="certificate-date">2024</p>
+                            <div class="certificate-badge">
+                                <i class="fas fa-certificate"></i>
+                                Certified
+                            </div>
                         </div>
                     </div>
 
                     <div class="certificate-card">
-                        <img src="sql.png" alt="SQL Certificate">
+                        <img src="sql.png" alt="SQL Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>SQL Database</h3>
                             <p>Database Management & SQL</p>
                             <p class="certificate-date">2024</p>
+                            <div class="certificate-badge">
+                                <i class="fas fa-certificate"></i>
+                                Certified
+                            </div>
                         </div>
                     </div>
 
                     <div class="certificate-card">
-                        <img src="cpp.png" alt="C++ Certificate">
+                        <img src="cpp.png" alt="C++ Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>C++ Programming</h3>
                             <p>Advanced C++ Development</p>
                             <p class="certificate-date">2024</p>
+                            <div class="certificate-badge">
+                                <i class="fas fa-certificate"></i>
+                                Certified
+                            </div>
                         </div>
                     </div>
 
                     <div class="certificate-card">
-                        <img src="dsa.png" alt="DSA Certificate">
+                        <img src="dsa.png" alt="DSA Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Data Structures & Algorithms</h3>
                             <p>Advanced DSA Certification</p>
                             <p class="certificate-date">2024</p>
+                            <div class="certificate-badge">
+                                <i class="fas fa-certificate"></i>
+                                Certified
+                            </div>
                         </div>
                     </div>
 
                     <div class="certificate-card">
-                        <img src="c.png" alt="C Programming Certificate">
+                        <img src="c.png" alt="C Programming Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>C Programming</h3>
                             <p>Core C Programming</p>
                             <p class="certificate-date">2024</p>
+                            <div class="certificate-badge">
+                                <i class="fas fa-certificate"></i>
+                                Certified
+                            </div>
                         </div>
                     </div>
 
                     <div class="certificate-card">
-                        <img src="n2.png" alt="Internetworking Certificate">
+                        <img src="n2.png" alt="Internetworking Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Internetworking Technologies</h3>
                             <p>Advanced Network Infrastructure</p>
                             <p class="certificate-date">2024</p>
+                            <div class="certificate-badge">
+                                <i class="fas fa-certificate"></i>
+                                Certified
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -343,8 +617,70 @@
             </div>
             <div class="slider-dots"></div>
         </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="section-header">
+                <h2>Let's Work Together</h2>
+                <p class="section-subtitle">Ready to bring your ideas to life</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>rahul.dev@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+91 12345 67890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>Punjab, India</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required>
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -354,6 +690,7 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#certificates">Certificates</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -362,18 +699,21 @@
                     <a href="https://www.linkedin.com/in/rahul1232/" target="_blank" title="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://github.com/yourgithub" target="_blank" title="GitHub">
+                    <a href="https://github.com/rahul7697762" target="_blank" title="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:your.email@example.com" title="Email">
+                    <a href="mailto:rahul.dev@example.com" title="Email">
                         <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://twitter.com/rahul" target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
                     </a>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Let's Work Together</h3>
                 <p>Open for collaborations and opportunities</p>
-                <a href="mailto:your.email@example.com" class="footer-cta">Get in Touch</a>
+                <a href="mailto:rahul.dev@example.com" class="footer-cta">Get in Touch</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -381,6 +721,11 @@
             <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-code"></i></p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script type="module" src="main.js"></script>
 </body>
