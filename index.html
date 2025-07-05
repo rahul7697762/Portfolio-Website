@@ -12,13 +12,13 @@
     <meta property="og:title" content="Rahul's Portfolio - AI & ML Engineer">
     <meta property="og:description" content="Aspiring AI & ML Engineer and Frontend Developer">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./pf.jpg">
+    <meta property="og:image" content="./IMG_20250604_0938251.jpg">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="./pf.jpg" as="image">
+    <link rel="preload" href="./IMG_20250604_0938251.jpg" as="image">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
     
     <!-- Stylesheets -->
@@ -52,6 +52,9 @@
     <!-- Background Canvas -->
     <div id="canvas-container"></div>
     
+    <!-- Cursor Follower -->
+    <div class="cursor-follower"></div>
+    
     <!-- Navigation -->
     <nav class="navigation">
         <div class="nav-container">
@@ -66,8 +69,11 @@
                 <li><a href="#home" data-section="home">Home</a></li>
                 <li><a href="#about" data-section="about">About</a></li>
                 <li><a href="#skills" data-section="skills">Skills</a></li>
+                <li><a href="#experience" data-section="experience">Experience</a></li>
                 <li><a href="#projects" data-section="projects">Projects</a></li>
                 <li><a href="#certificates" data-section="certificates">Certificates</a></li>
+                <li><a href="#testimonials" data-section="testimonials">Testimonials</a></li>
+                <li><a href="#blog" data-section="blog">Blog</a></li>
                 <li><a href="#contact" data-section="contact">Contact</a></li>
             </ul>
             <button class="theme-toggle" aria-label="Toggle theme">
@@ -82,8 +88,12 @@
         <section class="hero" id="home">
             <div class="hero-content">
                 <div class="profile-image">
-                    <img src="pf.jpg" alt="Rahul's Profile Picture" loading="eager">
+                    <img src="IMG_20250604_0938251.jpg" alt="Rahul's Profile Picture" loading="eager">
                     <div class="profile-ring"></div>
+                    <div class="profile-status">
+                        <span class="status-dot"></span>
+                        Available for work
+                    </div>
                 </div>
                 <div class="hero-text">
                     <h1>
@@ -363,6 +373,63 @@
             </div>
         </section>
 
+        <!-- Experience Section -->
+        <section class="experience" id="experience">
+            <div class="section-header">
+                <h2>Experience & Journey</h2>
+                <p class="section-subtitle">My professional and learning journey</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - Present</div>
+                        <h3>Computer Science Student</h3>
+                        <h4>Lovely Professional University</h4>
+                        <p>Pursuing B.Tech in Computer Science with focus on AI/ML and software development. Maintaining excellent academic performance while working on practical projects.</p>
+                        <div class="timeline-skills">
+                            <span>Data Structures</span>
+                            <span>Algorithms</span>
+                            <span>Machine Learning</span>
+                            <span>Software Engineering</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>Freelance Developer</h3>
+                        <h4>Self-Employed</h4>
+                        <p>Developed multiple web applications and machine learning projects for clients. Specialized in creating responsive websites and data analysis solutions.</p>
+                        <div class="timeline-skills">
+                            <span>React.js</span>
+                            <span>Python</span>
+                            <span>Data Analysis</span>
+                            <span>Web Development</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>Open Source Contributor</h3>
+                        <h4>GitHub Community</h4>
+                        <p>Actively contributing to open source projects, particularly in machine learning and web development domains. Building a strong portfolio of collaborative work.</p>
+                        <div class="timeline-skills">
+                            <span>Git</span>
+                            <span>Collaboration</span>
+                            <span>Code Review</span>
+                            <span>Documentation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section class="projects" id="projects">
             <div class="section-header">
@@ -510,6 +577,72 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800" alt="E-commerce Platform" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fas fa-shopping-cart project-icon"></i>
+                            <h3>E-commerce Platform</h3>
+                            <span class="project-status completed">Completed</span>
+                        </div>
+                        <p class="project-description">
+                            A full-stack e-commerce solution with modern UI/UX, secure payment integration, and admin dashboard. Built with React.js frontend and Node.js backend with MongoDB database.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ml">
+                    <div class="project-image">
+                        <img src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="AI Chatbot" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fas fa-robot project-icon"></i>
+                            <h3>AI Chatbot Assistant</h3>
+                            <span class="project-status in-progress">In Progress</span>
+                        </div>
+                        <p class="project-description">
+                            An intelligent chatbot powered by natural language processing and machine learning. Capable of understanding context, providing helpful responses, and learning from user interactions.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">OpenAI API</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -618,6 +751,138 @@
             <div class="slider-dots"></div>
         </section>
 
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="section-header">
+                <h2>What People Say</h2>
+                <p class="section-subtitle">Testimonials from colleagues and clients</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Rahul's technical skills and problem-solving abilities are exceptional. His work on our machine learning project exceeded expectations and delivered outstanding results."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Dr. Sarah Johnson</h4>
+                                <span>Professor, Computer Science</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Working with Rahul was a pleasure. His attention to detail and innovative approach to frontend development made our project a huge success."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>Senior Developer, TechCorp</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Rahul's dedication to learning and his ability to adapt to new technologies quickly makes him a valuable team member. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Emily Rodriguez</h4>
+                                <span>Project Manager, InnovateLab</span>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="blog" id="blog">
+            <div class="section-header">
+                <h2>Latest Blog Posts</h2>
+                <p class="section-subtitle">Sharing knowledge and insights</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Machine Learning Trends" loading="lazy">
+                        <div class="blog-category">Machine Learning</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="far fa-calendar"></i> Jan 15, 2025</span>
+                            <span class="blog-read-time"><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h3>The Future of Machine Learning in 2025</h3>
+                        <p>Exploring the latest trends and innovations in machine learning that will shape the technology landscape in 2025 and beyond.</p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Web Development" loading="lazy">
+                        <div class="blog-category">Web Development</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="far fa-calendar"></i> Jan 10, 2025</span>
+                            <span class="blog-read-time"><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h3>Building Responsive Web Applications with React</h3>
+                        <p>A comprehensive guide to creating modern, responsive web applications using React.js and best practices for optimal performance.</p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Science" loading="lazy">
+                        <div class="blog-category">Data Science</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="far fa-calendar"></i> Jan 5, 2025</span>
+                            <span class="blog-read-time"><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h3>Data Visualization Techniques for Better Insights</h3>
+                        <p>Learn how to create compelling data visualizations that tell stories and provide actionable insights for business decisions.</p>
+                        <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section class="contact" id="contact">
             <div class="section-header">
@@ -688,6 +953,7 @@
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#certificates">Certificates</a></li>
                     <li><a href="#contact">Contact</a></li>

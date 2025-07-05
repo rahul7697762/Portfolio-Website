@@ -11,7 +11,7 @@ const performance = {
 // Loading screen management
 const loadingScreen = document.getElementById('loading-screen');
 let assetsLoaded = 0;
-const totalAssets = 3; // Adjust based on your assets
+const totalAssets = 3;
 
 function updateLoadingProgress() {
     assetsLoaded++;
@@ -21,6 +21,35 @@ function updateLoadingProgress() {
             document.body.style.overflow = 'auto';
         }, 500);
     }
+}
+
+// Cursor follower
+const cursorFollower = document.querySelector('.cursor-follower');
+let mouseX = 0;
+let mouseY = 0;
+let cursorX = 0;
+let cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.1;
+    cursorY += (mouseY - cursorY) * 0.1;
+    
+    cursorFollower.style.left = cursorX + 'px';
+    cursorFollower.style.top = cursorY + 'px';
+    
+    requestAnimationFrame(animateCursor);
+}
+
+// Start cursor animation on desktop only
+if (window.innerWidth > 768) {
+    animateCursor();
+} else {
+    cursorFollower.style.display = 'none';
 }
 
 // Scene setup with improved performance
@@ -50,9 +79,9 @@ controls.enablePan = false;
 controls.maxPolarAngle = Math.PI / 2;
 controls.minPolarAngle = Math.PI / 2;
 
-// Enhanced particle system
+// Enhanced particle system with nature-inspired colors
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = window.innerWidth < 768 ? 2000 : 5000; // Responsive particle count
+const particlesCount = window.innerWidth < 768 ? 1500 : 4000;
 const posArray = new Float32Array(particlesCount * 3);
 const colorArray = new Float32Array(particlesCount * 3);
 
@@ -62,9 +91,12 @@ for(let i = 0; i < particlesCount * 3; i += 3) {
     posArray[i + 1] = (Math.random() - 0.5) * 10;
     posArray[i + 2] = (Math.random() - 0.5) * 10;
     
-    // Color variation
+    // Nature-inspired color variation (greens and earth tones)
     const color = new THREE.Color();
-    color.setHSL(0.5 + Math.random() * 0.2, 0.7, 0.5 + Math.random() * 0.3);
+    const hue = 0.25 + Math.random() * 0.15; // Green range
+    const saturation = 0.4 + Math.random() * 0.4;
+    const lightness = 0.3 + Math.random() * 0.4;
+    color.setHSL(hue, saturation, lightness);
     colorArray[i] = color.r;
     colorArray[i + 1] = color.g;
     colorArray[i + 2] = color.b;
@@ -74,26 +106,26 @@ particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3
 particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
 
 const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.005,
+    size: 0.004,
     vertexColors: true,
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.7,
     blending: THREE.AdditiveBlending
 });
 
 const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particlesMesh);
 
-// Enhanced lighting
-const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+// Enhanced lighting with nature theme
+const ambientLight = new THREE.AmbientLight(0x2d5a27, 0.4);
 scene.add(ambientLight);
 
-const pointLight = new THREE.PointLight(0x4ecdc4, 1, 100);
+const pointLight = new THREE.PointLight(0x4a7c59, 0.8, 100);
 pointLight.position.set(5, 5, 5);
 pointLight.castShadow = true;
 scene.add(pointLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+const directionalLight = new THREE.DirectionalLight(0x8fbc8f, 0.3);
 directionalLight.position.set(-5, 5, 5);
 scene.add(directionalLight);
 
@@ -299,7 +331,9 @@ const phrases = [
     'Machine Learning Enthusiast',
     'Frontend Web Developer',
     'AI Engineer',
-    'Problem Solver'
+    'Problem Solver',
+    'Data Scientist',
+    'Full Stack Developer'
 ];
 let phraseIndex = 0;
 let charIndex = 0;
@@ -336,7 +370,7 @@ setTimeout(() => {
     updateLoadingProgress();
 }, 1000);
 
-// Project filtering
+// Project filtering with enhanced animations
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 
@@ -348,19 +382,19 @@ filterButtons.forEach(button => {
         
         const filter = button.getAttribute('data-filter');
         
-        // Filter projects with animation
-        projectCards.forEach(card => {
+        // Filter projects with staggered animation
+        projectCards.forEach((card, index) => {
             const category = card.getAttribute('data-category');
             
             if (filter === 'all' || category === filter) {
                 card.style.display = 'block';
                 setTimeout(() => {
                     card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 100);
+                    card.style.transform = 'translateY(0) scale(1)';
+                }, 100 + (index * 50));
             } else {
                 card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
+                card.style.transform = 'translateY(20px) scale(0.95)';
                 setTimeout(() => {
                     card.style.display = 'none';
                 }, 300);
@@ -508,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateLoadingProgress();
 });
 
-// Contact form functionality
+// Enhanced contact form functionality
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -524,7 +558,7 @@ if (contactForm) {
         // Simulate form submission
         setTimeout(() => {
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            submitBtn.style.background = '#4caf50';
+            submitBtn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
             
             // Reset form
             setTimeout(() => {
@@ -555,6 +589,17 @@ backToTopBtn.addEventListener('click', () => {
     });
 });
 
+// Enhanced parallax effect for hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.profile-image');
+    
+    parallaxElements.forEach(element => {
+        const speed = 0.5;
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+
 // Performance optimization
 let ticking = false;
 
@@ -564,12 +609,12 @@ function updateParticles() {
             updateMouse();
             
             // Rotate particles
-            particlesMesh.rotation.x += 0.0005;
-            particlesMesh.rotation.y += 0.0005;
+            particlesMesh.rotation.x += 0.0003;
+            particlesMesh.rotation.y += 0.0003;
             
             // Mouse interaction
-            particlesMesh.rotation.x += mouse.y * 0.00005;
-            particlesMesh.rotation.y += mouse.x * 0.00005;
+            particlesMesh.rotation.x += mouse.y * 0.00003;
+            particlesMesh.rotation.y += mouse.x * 0.00003;
             
             ticking = false;
         });
@@ -607,6 +652,13 @@ window.addEventListener('resize', () => {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        
+        // Update cursor follower visibility
+        if (window.innerWidth <= 768) {
+            cursorFollower.style.display = 'none';
+        } else {
+            cursorFollower.style.display = 'block';
+        }
     }, 100);
 });
 
@@ -646,4 +698,4 @@ window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
 });
 
-console.log('🚀 Portfolio website loaded successfully!');
+console.log('🚀 Enhanced Portfolio website loaded successfully!');
