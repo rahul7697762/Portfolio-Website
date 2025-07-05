@@ -32,14 +32,14 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px;
+    font-size: 14px; /* Reduced from 16px */
 }
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: var(--text-color);
     background-color: var(--bg-color);
-    line-height: 1.6;
+    line-height: 1.5; /* Reduced from 1.6 */
     overflow-x: hidden;
     transition: var(--transition);
 }
@@ -68,9 +68,13 @@ body {
     text-align: center;
 }
 
+.loading-content p {
+    font-size: 0.9rem; /* Reduced */
+}
+
 .loading-spinner {
-    width: 50px;
-    height: 50px;
+    width: 40px; /* Reduced from 50px */
+    height: 40px;
     border: 3px solid rgba(78, 205, 196, 0.3);
     border-top: 3px solid var(--primary-color);
     border-radius: 50%;
@@ -112,7 +116,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1rem 0;
+    padding: 0.8rem 0; /* Reduced from 1rem */
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(20px);
     z-index: 1000;
@@ -121,7 +125,7 @@ body {
 }
 
 .navigation.scrolled {
-    padding: 0.5rem 0;
+    padding: 0.4rem 0; /* Reduced from 0.5rem */
     background: rgba(10, 10, 10, 0.98);
 }
 
@@ -137,15 +141,15 @@ body {
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    font-size: 1.2rem; /* Reduced from 1.5rem */
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
 }
 
 .brand-icon {
-    font-size: 1.8rem;
+    font-size: 1.4rem; /* Reduced from 1.8rem */
     animation: float 3s ease-in-out infinite;
 }
 
@@ -157,7 +161,7 @@ body {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced from 2rem */
     align-items: center;
 }
 
@@ -165,8 +169,9 @@ body {
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.9rem; /* Added smaller font size */
     position: relative;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem; /* Reduced from 0.5rem 1rem */
     border-radius: 25px;
     transition: var(--transition);
 }
@@ -201,15 +206,16 @@ body {
     background: var(--surface-color);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-color);
-    padding: 0.5rem;
+    padding: 0.4rem; /* Reduced from 0.5rem */
     border-radius: 50%;
     cursor: pointer;
     transition: var(--transition);
-    width: 40px;
-    height: 40px;
+    width: 36px; /* Reduced from 40px */
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .theme-toggle:hover {
@@ -223,14 +229,14 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.4rem; /* Reduced from 0.5rem */
     position: relative;
     z-index: 1001;
 }
 
 .hamburger {
     display: block;
-    width: 24px;
+    width: 20px; /* Reduced from 24px */
     height: 2px;
     background: var(--primary-color);
     position: relative;
@@ -241,14 +247,14 @@ body {
 .hamburger::after {
     content: '';
     position: absolute;
-    width: 24px;
+    width: 20px; /* Reduced from 24px */
     height: 2px;
     background: var(--primary-color);
     transition: var(--transition);
 }
 
-.hamburger::before { top: -8px; }
-.hamburger::after { bottom: -8px; }
+.hamburger::before { top: -6px; } /* Reduced from -8px */
+.hamburger::after { bottom: -6px; } /* Reduced from -8px */
 
 .menu-toggle.active .hamburger {
     background: transparent;
@@ -276,7 +282,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 6rem 2rem 4rem;
+    padding: 5rem 2rem 3rem; /* Reduced from 6rem 2rem 4rem */
     max-width: var(--max-width);
     margin: 0 auto;
     opacity: 0;
@@ -291,12 +297,12 @@ section.animate-in {
 
 .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem; /* Reduced from 4rem */
 }
 
 .section-header h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 1rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Reduced from clamp(2rem, 5vw, 3rem) */
+    margin-bottom: 0.8rem; /* Reduced from 1rem */
     background: var(--gradient-primary);
     background-clip: text;
     -webkit-background-clip: text;
@@ -305,7 +311,7 @@ section.animate-in {
 }
 
 .section-subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Reduced from 1.2rem */
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
@@ -320,15 +326,15 @@ section.animate-in {
 .hero-content {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 4rem;
+    gap: 3rem; /* Reduced from 4rem */
     align-items: center;
     min-height: 80vh;
 }
 
 .profile-image {
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 300px; /* Reduced from 350px */
+    height: 300px;
     margin: 0 auto;
 }
 
@@ -371,26 +377,26 @@ section.animate-in {
 
 .greeting {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem */
     color: var(--text-secondary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .name {
     display: block;
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Reduced from clamp(3rem, 8vw, 5rem) */
     font-weight: 700;
     background: var(--gradient-primary);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Reduced from 1rem */
 }
 
 .typing-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem */
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
     position: relative;
 }
 
@@ -410,19 +416,19 @@ section.animate-in {
 .hero-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin: 2rem 0;
+    gap: 0.8rem; /* Reduced from 1rem */
+    margin: 1.5rem 0; /* Reduced from 2rem 0 */
 }
 
 .tag {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    padding: 0.6rem 1.2rem; /* Reduced from 0.75rem 1.5rem */
     background: var(--surface-color);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 25px;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     color: var(--text-color);
     transition: var(--transition);
     backdrop-filter: blur(10px);
@@ -430,6 +436,7 @@ section.animate-in {
 
 .tag i {
     color: var(--primary-color);
+    font-size: 0.8rem; /* Added smaller icon size */
 }
 
 .tag.achievement {
@@ -446,18 +453,19 @@ section.animate-in {
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin: 2rem 0;
+    gap: 0.8rem; /* Reduced from 1rem */
+    margin: 1.5rem 0; /* Reduced from 2rem 0 */
 }
 
 .cta-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    padding: 0.8rem 1.6rem; /* Reduced from 1rem 2rem */
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.9rem; /* Added smaller font size */
     transition: var(--transition);
     border: 2px solid transparent;
     position: relative;
@@ -516,17 +524,17 @@ section.animate-in {
 .skills-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 2rem;
+    gap: 0.6rem; /* Reduced from 0.8rem */
+    margin-top: 1.5rem; /* Reduced from 2rem */
 }
 
 .pill {
     position: relative;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem; /* Reduced from 0.5rem 1rem */
     background: var(--surface-color);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     color: var(--text-color);
     transition: var(--transition);
     overflow: hidden;
@@ -555,9 +563,9 @@ section.animate-in {
 
 .skill-progress {
     background: rgba(255, 255, 255, 0.1);
-    height: 4px;
+    height: 3px; /* Reduced from 4px */
     border-radius: 2px;
-    margin-top: 5px;
+    margin-top: 4px; /* Reduced from 5px */
     overflow: hidden;
 }
 
@@ -574,24 +582,26 @@ section.animate-in {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 2rem;
+    bottom: 1.5rem; /* Reduced from 2rem */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     color: var(--text-secondary);
     animation: bounce 2s infinite;
+    font-size: 0.8rem; /* Added smaller font size */
 }
 
 .scroll-arrow {
-    width: 40px;
-    height: 40px;
+    width: 35px; /* Reduced from 40px */
+    height: 35px;
     border: 2px solid var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 0.5rem;
+    margin: 0 auto 0.4rem; /* Reduced from 0.5rem */
     color: var(--primary-color);
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 @keyframes bounce {
@@ -607,11 +617,11 @@ section.animate-in {
 }
 
 .about-intro {
-    font-size: 1.2rem;
-    line-height: 1.8;
+    font-size: 1rem; /* Reduced from 1.2rem */
+    line-height: 1.6; /* Reduced from 1.8 */
     color: var(--text-secondary);
-    margin-bottom: 3rem;
-    padding: 2rem;
+    margin-bottom: 2.5rem; /* Reduced from 3rem */
+    padding: 1.5rem; /* Reduced from 2rem */
     background: var(--surface-color);
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
@@ -620,14 +630,14 @@ section.animate-in {
 
 .about-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Reduced from 200px */
+    gap: 1.5rem; /* Reduced from 2rem */
+    margin: 2.5rem 0; /* Reduced from 3rem 0 */
 }
 
 .stat-item {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     background: var(--surface-color);
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
@@ -641,26 +651,27 @@ section.animate-in {
 }
 
 .stat-number {
-    font-size: 3rem;
+    font-size: 2.5rem; /* Reduced from 3rem */
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .stat-label {
     color: var(--text-secondary);
     font-weight: 500;
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .about-details {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Reduced from 300px */
+    gap: 1.5rem; /* Reduced from 2rem */
+    margin: 2.5rem 0; /* Reduced from 3rem 0 */
 }
 
 .about-section {
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     background: var(--surface-color);
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
@@ -675,61 +686,62 @@ section.animate-in {
 
 .about-section h3 {
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Reduced from 1rem */
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.3rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    font-size: 1.1rem; /* Reduced from 1.3rem */
 }
 
 .about-section p {
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5; /* Reduced from 1.6 */
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .education-card {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
-    padding: 1.5rem;
-    margin-top: 1rem;
+    padding: 1.2rem; /* Reduced from 1.5rem */
+    margin-top: 0.8rem; /* Reduced from 1rem */
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .education-card h4 {
     color: var(--text-color);
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem; /* Reduced from 1.2rem */
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .education-card .university {
     color: var(--primary-color);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem; /* Reduced from 1.1rem */
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
     font-weight: 600;
 }
 
 .education-card .duration {
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
+    margin-bottom: 0.8rem; /* Reduced from 1rem */
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .education-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    margin-top: 0.8rem; /* Reduced from 1rem */
 }
 
 .education-tags span {
     background: rgba(78, 205, 196, 0.1);
     color: var(--primary-color);
-    padding: 0.3rem 0.8rem;
+    padding: 0.25rem 0.6rem; /* Reduced from 0.3rem 0.8rem */
     border-radius: 15px;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     transition: var(--transition);
 }
 
@@ -741,16 +753,16 @@ section.animate-in {
 .about-highlights {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced from 2rem */
     flex-wrap: wrap;
-    margin-top: 3rem;
+    margin-top: 2.5rem; /* Reduced from 3rem */
 }
 
 .highlight {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    padding: 0.8rem 1.5rem; /* Reduced from 1rem 2rem */
     background: rgba(78, 205, 196, 0.1);
     border: 1px solid var(--primary-color);
     border-radius: 25px;
@@ -765,24 +777,26 @@ section.animate-in {
 
 .highlight i {
     color: var(--primary-color);
+    font-size: 0.9rem; /* Added smaller icon size */
 }
 
 .highlight span {
     color: var(--text-color);
     font-weight: 500;
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 /* Skills Section */
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Reduced from 350px */
+    gap: 1.5rem; /* Reduced from 2rem */
+    margin-top: 1.5rem; /* Reduced from 2rem */
 }
 
 .skill-category {
     background: var(--surface-color);
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -796,24 +810,24 @@ section.animate-in {
 
 .skill-category h3 {
     color: var(--primary-color);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.3rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    font-size: 1.1rem; /* Reduced from 1.3rem */
 }
 
 .skills-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem; /* Reduced from 1.5rem */
 }
 
 .skill-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem;
+    gap: 0.8rem; /* Reduced from 1rem */
+    padding: 0.8rem; /* Reduced from 1rem */
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     transition: var(--transition);
@@ -825,8 +839,8 @@ section.animate-in {
 }
 
 .skill-icon {
-    width: 40px;
-    height: 40px;
+    width: 35px; /* Reduced from 40px */
+    height: 35px;
     transition: var(--transition);
 }
 
@@ -841,22 +855,23 @@ section.animate-in {
 .skill-name {
     display: block;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
     color: var(--text-color);
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .skill-bar {
     background: rgba(255, 255, 255, 0.1);
-    height: 8px;
-    border-radius: 4px;
+    height: 6px; /* Reduced from 8px */
+    border-radius: 3px; /* Reduced from 4px */
     overflow: hidden;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .skill-fill {
     height: 100%;
     background: var(--gradient-primary);
-    border-radius: 4px;
+    border-radius: 3px; /* Reduced from 4px */
     transform: translateX(-100%);
     transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -866,7 +881,7 @@ section.animate-in {
 }
 
 .skill-percentage {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     color: var(--primary-color);
     font-weight: 600;
 }
@@ -875,13 +890,13 @@ section.animate-in {
 .projects-filter {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
+    gap: 0.8rem; /* Reduced from 1rem */
+    margin-bottom: 2.5rem; /* Reduced from 3rem */
     flex-wrap: wrap;
 }
 
 .filter-btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.2rem; /* Reduced from 0.75rem 1.5rem */
     background: var(--surface-color);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-color);
@@ -889,6 +904,7 @@ section.animate-in {
     cursor: pointer;
     transition: var(--transition);
     font-weight: 500;
+    font-size: 0.85rem; /* Added smaller font size */
 }
 
 .filter-btn:hover,
@@ -900,9 +916,9 @@ section.animate-in {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Reduced from 350px */
+    gap: 1.5rem; /* Reduced from 2rem */
+    margin-top: 1.5rem; /* Reduced from 2rem */
 }
 
 .project-card {
@@ -922,7 +938,7 @@ section.animate-in {
 
 .project-image {
     position: relative;
-    height: 200px;
+    height: 180px; /* Reduced from 200px */
     overflow: hidden;
 }
 
@@ -957,12 +973,12 @@ section.animate-in {
 
 .project-overlay .project-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem; /* Reduced from 1rem */
 }
 
 .project-overlay .project-link {
-    width: 50px;
-    height: 50px;
+    width: 45px; /* Reduced from 50px */
+    height: 45px;
     background: var(--primary-color);
     color: white;
     border-radius: 50%;
@@ -971,6 +987,7 @@ section.animate-in {
     justify-content: center;
     text-decoration: none;
     transition: var(--transition);
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .project-overlay .project-link:hover {
@@ -979,32 +996,32 @@ section.animate-in {
 }
 
 .project-content {
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
 }
 
 .project-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.8rem; /* Reduced from 1rem */
+    margin-bottom: 0.8rem; /* Reduced from 1rem */
     flex-wrap: wrap;
 }
 
 .project-icon {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem */
     color: var(--primary-color);
 }
 
 .project-content h3 {
     color: var(--text-color);
-    font-size: 1.3rem;
+    font-size: 1.1rem; /* Reduced from 1.3rem */
     flex: 1;
 }
 
 .project-status {
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.6rem; /* Reduced from 0.25rem 0.75rem */
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 0.75rem; /* Reduced from 0.85rem */
     font-weight: 500;
 }
 
@@ -1020,23 +1037,24 @@ section.animate-in {
 
 .project-description {
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    line-height: 1.5; /* Reduced from 1.6 */
+    margin-bottom: 1.2rem; /* Reduced from 1.5rem */
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+    margin-bottom: 1.2rem; /* Reduced from 1.5rem */
 }
 
 .tech-tag {
     background: rgba(78, 205, 196, 0.1);
     color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.6rem; /* Reduced from 0.25rem 0.75rem */
     border-radius: 15px;
-    font-size: 0.85rem;
+    font-size: 0.75rem; /* Reduced from 0.85rem */
     transition: var(--transition);
 }
 
@@ -1047,7 +1065,7 @@ section.animate-in {
 
 /* Certificates Section */
 .certificates-section {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem; /* Reduced from 4rem 1rem */
     max-width: 1400px;
     margin: 0 auto;
     overflow: hidden;
@@ -1056,7 +1074,7 @@ section.animate-in {
 .slider-container {
     position: relative;
     width: 100%;
-    margin: 2rem auto;
+    margin: 1.5rem auto; /* Reduced from 2rem auto */
     overflow: hidden;
     padding: 0 1rem;
 }
@@ -1064,15 +1082,15 @@ section.animate-in {
 .certificates-slider {
     display: flex;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced from 2rem */
 }
 
 .certificate-card {
-    min-width: calc(100% - 2rem);
+    min-width: calc(100% - 1.5rem); /* Reduced from 2rem */
     flex: 0 0 auto;
     background: var(--surface-color);
     border-radius: var(--border-radius);
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: var(--transition);
@@ -1085,12 +1103,12 @@ section.animate-in {
 
 .certificate-card img {
     width: 100%;
-    height: 450px;
+    height: 400px; /* Reduced from 450px */
     object-fit: contain;
     border-radius: 10px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem; /* Reduced from 1.5rem */
     background: rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    padding: 0.8rem; /* Reduced from 1rem */
     transition: var(--transition);
 }
 
@@ -1103,8 +1121,8 @@ section.animate-in {
 }
 
 .certificate-details h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.2rem; /* Reduced from 1.4rem */
+    margin-bottom: 0.6rem; /* Reduced from 0.8rem */
     background: var(--gradient-primary);
     background-clip: text;
     -webkit-background-clip: text;
@@ -1113,25 +1131,25 @@ section.animate-in {
 
 .certificate-details p {
     color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem; /* Reduced from 1.1rem */
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .certificate-date {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     color: var(--text-secondary);
 }
 
 .certificate-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
     background: rgba(78, 205, 196, 0.1);
     color: var(--primary-color);
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem; /* Reduced from 0.5rem 1rem */
     border-radius: 20px;
-    margin-top: 1rem;
-    font-size: 0.9rem;
+    margin-top: 0.8rem; /* Reduced from 1rem */
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     font-weight: 500;
 }
 
@@ -1142,9 +1160,9 @@ section.animate-in {
     background: var(--surface-color);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-color);
-    font-size: 1.5rem;
-    width: 50px;
-    height: 50px;
+    font-size: 1.2rem; /* Reduced from 1.5rem */
+    width: 45px; /* Reduced from 50px */
+    height: 45px;
     cursor: pointer;
     border-radius: 50%;
     backdrop-filter: blur(10px);
@@ -1167,13 +1185,13 @@ section.animate-in {
 .slider-dots {
     display: flex;
     justify-content: center;
-    gap: 0.8rem;
-    margin-top: 2rem;
+    gap: 0.6rem; /* Reduced from 0.8rem */
+    margin-top: 1.5rem; /* Reduced from 2rem */
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
+    width: 10px; /* Reduced from 12px */
+    height: 10px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
     cursor: pointer;
@@ -1193,7 +1211,7 @@ section.animate-in {
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 4rem;
+    gap: 3rem; /* Reduced from 4rem */
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -1201,14 +1219,14 @@ section.animate-in {
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced from 2rem */
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    gap: 1.2rem; /* Reduced from 1.5rem */
+    padding: 1.2rem; /* Reduced from 1.5rem */
     background: var(--surface-color);
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
@@ -1222,30 +1240,31 @@ section.animate-in {
 }
 
 .contact-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px; /* Reduced from 60px */
+    height: 50px;
     background: var(--gradient-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem */
 }
 
 .contact-details h3 {
     color: var(--text-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
+    font-size: 1rem; /* Reduced from 1.2rem */
 }
 
 .contact-details p {
     color: var(--text-secondary);
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .contact-form {
     background: var(--surface-color);
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1253,18 +1272,18 @@ section.animate-in {
 
 .form-group {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem; /* Reduced from 1rem */
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.9rem; /* Reduced from 1rem */
     transition: var(--transition);
 }
 
@@ -1277,40 +1296,41 @@ section.animate-in {
 
 .form-group label {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 0.8rem; /* Reduced from 1rem */
+    left: 0.8rem; /* Reduced from 1rem */
     color: var(--text-secondary);
     transition: var(--transition);
     pointer-events: none;
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .form-group input:focus + label,
 .form-group input:valid + label,
 .form-group textarea:focus + label,
 .form-group textarea:valid + label {
-    top: -0.5rem;
-    left: 0.5rem;
-    font-size: 0.8rem;
+    top: -0.4rem; /* Reduced from -0.5rem */
+    left: 0.4rem; /* Reduced from 0.5rem */
+    font-size: 0.7rem; /* Reduced from 0.8rem */
     color: var(--primary-color);
     background: var(--bg-color);
-    padding: 0 0.5rem;
+    padding: 0 0.4rem; /* Reduced from 0 0.5rem */
 }
 
 .submit-btn {
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem; /* Reduced from 1rem 2rem */
     background: var(--gradient-primary);
     color: white;
     border: none;
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: 0.95rem; /* Reduced from 1.1rem */
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .submit-btn:hover {
@@ -1322,15 +1342,15 @@ section.animate-in {
 .footer {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
-    padding: 3rem 0 1rem;
-    margin-top: 4rem;
+    padding: 2.5rem 0 0.8rem; /* Reduced from 3rem 0 1rem */
+    margin-top: 3rem; /* Reduced from 4rem */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Reduced from 250px */
+    gap: 1.5rem; /* Reduced from 2rem */
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 2rem;
@@ -1338,8 +1358,8 @@ section.animate-in {
 
 .footer-section h3 {
     color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.8rem; /* Reduced from 1rem */
+    font-size: 1rem; /* Reduced from 1.2rem */
 }
 
 .footer-section ul {
@@ -1348,13 +1368,14 @@ section.animate-in {
 }
 
 .footer-section ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
 }
 
 .footer-section a {
     color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .footer-section a:hover {
@@ -1363,21 +1384,26 @@ section.animate-in {
     display: inline-block;
 }
 
+.footer-section p {
+    font-size: 0.9rem; /* Added smaller font size */
+    color: var(--text-secondary);
+}
+
 .social-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem; /* Reduced from 1rem */
 }
 
 .social-links a {
-    width: 40px;
-    height: 40px;
+    width: 35px; /* Reduced from 40px */
+    height: 35px;
     background: var(--surface-color);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Reduced from 1.2rem */
     transition: var(--transition);
 }
 
@@ -1391,11 +1417,12 @@ section.animate-in {
     display: inline-block;
     background: var(--primary-color);
     color: white !important;
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.2rem; /* Reduced from 0.75rem 1.5rem */
     border-radius: 25px;
-    margin-top: 1rem;
+    margin-top: 0.8rem; /* Reduced from 1rem */
     transition: var(--transition);
     text-decoration: none;
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .footer-cta:hover {
@@ -1405,10 +1432,11 @@ section.animate-in {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
+    margin-top: 1.5rem; /* Reduced from 2rem */
+    padding-top: 1.5rem; /* Reduced from 2rem */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-secondary);
+    font-size: 0.85rem; /* Added smaller font size */
 }
 
 .footer-bottom .fa-heart {
@@ -1428,10 +1456,10 @@ section.animate-in {
 /* Back to Top Button */
 .back-to-top {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 50px;
-    height: 50px;
+    bottom: 1.5rem; /* Reduced from 2rem */
+    right: 1.5rem; /* Reduced from 2rem */
+    width: 45px; /* Reduced from 50px */
+    height: 45px;
     background: var(--primary-color);
     color: white;
     border: none;
@@ -1441,6 +1469,7 @@ section.animate-in {
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .back-to-top.visible {
@@ -1458,20 +1487,24 @@ section.animate-in {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 3rem;
+        gap: 2.5rem; /* Reduced from 3rem */
     }
     
     .contact-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem; /* Reduced from 3rem */
     }
     
     .skills-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Reduced from 300px */
     }
 }
 
 @media (max-width: 768px) {
+    html {
+        font-size: 13px; /* Further reduced for mobile */
+    }
+
     .menu-toggle {
         display: block;
     }
@@ -1487,7 +1520,7 @@ section.animate-in {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
+        gap: 1.5rem; /* Reduced from 2rem */
         transition: right 0.3s ease;
         z-index: 999;
     }
@@ -1501,20 +1534,20 @@ section.animate-in {
     }
 
     section {
-        padding: 4rem 1rem 2rem;
+        padding: 3rem 1rem 1.5rem; /* Reduced from 4rem 1rem 2rem */
     }
 
     .hero-content {
-        gap: 2rem;
+        gap: 1.5rem; /* Reduced from 2rem */
     }
 
     .profile-image {
-        width: 250px;
-        height: 250px;
+        width: 220px; /* Reduced from 250px */
+        height: 220px;
     }
 
     .name {
-        font-size: 3rem;
+        font-size: 2.2rem; /* Reduced from 3rem */
     }
 
     .hero-actions {
@@ -1522,21 +1555,21 @@ section.animate-in {
     }
 
     .cta-button {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem; /* Reduced from 0.75rem 1.5rem */
+        font-size: 0.8rem; /* Reduced from 0.9rem */
     }
 
     .about-stats {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 0.8rem; /* Reduced from 1rem */
     }
 
     .stat-item {
-        padding: 1.5rem;
+        padding: 1.2rem; /* Reduced from 1.5rem */
     }
 
     .stat-number {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Reduced from 2rem */
     }
 
     .about-details {
@@ -1552,13 +1585,13 @@ section.animate-in {
     }
 
     .slider-button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+        width: 35px; /* Reduced from 40px */
+        height: 35px;
+        font-size: 1rem; /* Reduced from 1.2rem */
     }
 
-    .prev { left: 0.5rem; }
-    .next { right: 0.5rem; }
+    .prev { left: 0.4rem; } /* Reduced from 0.5rem */
+    .next { right: 0.4rem; }
 
     .contact-content {
         grid-template-columns: 1fr;
@@ -1575,13 +1608,17 @@ section.animate-in {
 }
 
 @media (max-width: 480px) {
+    html {
+        font-size: 12px; /* Even smaller for very small screens */
+    }
+
     .profile-image {
-        width: 200px;
-        height: 200px;
+        width: 180px; /* Reduced from 200px */
+        height: 180px;
     }
 
     .name {
-        font-size: 2.5rem;
+        font-size: 2rem; /* Reduced from 2.5rem */
     }
 
     .hero-tags {
@@ -1589,13 +1626,13 @@ section.animate-in {
     }
 
     .tag {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem; /* Reduced from 0.5rem 1rem */
+        font-size: 0.7rem; /* Reduced from 0.8rem */
     }
 
     .cta-button {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.85rem;
+        padding: 0.6rem 1rem; /* Reduced from 0.75rem 1.25rem */
+        font-size: 0.75rem; /* Reduced from 0.85rem */
     }
 
     .about-stats {
@@ -1603,18 +1640,18 @@ section.animate-in {
     }
 
     .stat-number {
-        font-size: 1.8rem;
+        font-size: 1.5rem; /* Reduced from 1.8rem */
     }
 
     .certificate-card img {
-        height: 300px;
+        height: 250px; /* Reduced from 300px */
     }
 
     .back-to-top {
         bottom: 1rem;
         right: 1rem;
-        width: 45px;
-        height: 45px;
+        width: 40px; /* Reduced from 45px */
+        height: 40px;
     }
 }
 
