@@ -1,58 +1,57 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-// Performance monitoring
+// -------------------------------------------------------------------
+// SETUP & CONFIGURATION
+// -------------------------------------------------------------------
+
+// Performance monitoring (for development)
 const performance = {
     fps: 0,
     lastTime: 0,
     frameCount: 0
 };
 
-// Loading screen management
-const loadingScreen = document.getElementById('loading-screen');
-let assetsLoaded = 0;
-const totalAssets = 3;
-
-function updateLoadingProgress() {
-    assetsLoaded++;
-    if (assetsLoaded >= totalAssets) {
-        setTimeout(() => {
-            loadingScreen.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }, 500);
-    }
-}
-
-// Cursor follower
+// Global DOM Elements
 const cursorFollower = document.querySelector('.cursor-follower');
-let mouseX = 0;
-let mouseY = 0;
+const nav = document.querySelector('.navigation');
+const backToTopBtn = document.querySelector('.back-to-top');
+const contactForm = document.querySelector('.contact-form');
+const typingText = document.querySelector('.typing-text');
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+const themeToggle = document.querySelector('.theme-toggle');
+
+// Global State
+let lastScrollY = window.scrollY;
+let ticking = false;
+const mouse = { x: 0, y: 0 };
+let mouseTarget = { x: 0, y: 0 };
 let cursorX = 0;
 let cursorY = 0;
+let mouseX = 0;
+let mouseY = 0;
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+// -------------------------------------------------------------------
+// CURSOR FOLLOWER
+// -------------------------------------------------------------------
 
 function animateCursor() {
-    cursorX += (mouseX - cursorX) * 0.1;
-    cursorY += (mouseY - cursorY) * 0.1;
-    
-    cursorFollower.style.left = cursorX + 'px';
-    cursorFollower.style.top = cursorY + 'px';
-    
+    // Only run if the follower is visible
+    if (cursorFollower.style.display !== 'none') {
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
+        
+        cursorFollower.style.left = cursorX + 'px';
+        cursorFollower.style.top = cursorY + 'px';
+    }
     requestAnimationFrame(animateCursor);
 }
 
-// Start cursor animation on desktop only
-if (window.innerWidth > 768) {
-    animateCursor();
-} else {
-    cursorFollower.style.display = 'none';
-}
+// -------------------------------------------------------------------
+// THREE.JS SCENE SETUP
+// -------------------------------------------------------------------
 
-// Scene setup with improved performance
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ 
@@ -67,10 +66,9 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-// Camera position
 camera.position.z = 5;
 
-// Controls with improved settings
+// Controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
@@ -79,34 +77,33 @@ controls.enablePan = false;
 controls.maxPolarAngle = Math.PI / 2;
 controls.minPolarAngle = Math.PI / 2;
 
-// Enhanced particle system with nature-inspired colors
+// Particle System
 const particlesGeometry = new THREE.BufferGeometry();
 const particlesCount = window.innerWidth < 768 ? 1500 : 4000;
 const posArray = new Float32Array(particlesCount * 3);
 const colorArray = new Float32Array(particlesCount * 3);
-
-for(let i = 0; i < particlesCount * 3; i += 3) {
-    // Position
-    posArray[i] = (Math.random() - 0.5) * 10;
-    posArray[i + 1] = (Math.random() - 0.5) * 10;
-    posArray[i + 2] = (Math.random() - 0.5) * 10;
-    
-    // Nature-inspired color variation (greens and earth tones)
-    const color = new THREE.Color();
+const natureColors = [];
+for (let i = 0; i < 10; i++) {
     const hue = 0.25 + Math.random() * 0.15; // Green range
     const saturation = 0.4 + Math.random() * 0.4;
     const lightness = 0.3 + Math.random() * 0.4;
-    color.setHSL(hue, saturation, lightness);
+    natureColors.push(new THREE.Color().setHSL(hue, saturation, lightness));
+}
+
+for(let i = 0; i < particlesCount * 3; i++) {
+    posArray[i] = (Math.random() - 0.5) * 10;
+    
+    const color = natureColors[Math.floor(Math.random() * natureColors.length)];
     colorArray[i] = color.r;
-    colorArray[i + 1] = color.g;
-    colorArray[i + 2] = color.b;
+    colorArray[i+1] = color.g;
+    colorArray[i+2] = color.b;
 }
 
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
 
 const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.004,
+    size: 0.005,
     vertexColors: true,
     transparent: true,
     opacity: 0.7,
@@ -116,37 +113,23 @@ const particlesMaterial = new THREE.PointsMaterial({
 const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particlesMesh);
 
-// Enhanced lighting with nature theme
+// Lighting
 const ambientLight = new THREE.AmbientLight(0x2d5a27, 0.4);
 scene.add(ambientLight);
-
 const pointLight = new THREE.PointLight(0x4a7c59, 0.8, 100);
 pointLight.position.set(5, 5, 5);
 pointLight.castShadow = true;
 scene.add(pointLight);
-
 const directionalLight = new THREE.DirectionalLight(0x8fbc8f, 0.3);
 directionalLight.position.set(-5, 5, 5);
 scene.add(directionalLight);
 
-updateLoadingProgress();
 
-// Mouse interaction with improved performance
-const mouse = { x: 0, y: 0 };
-let mouseTarget = { x: 0, y: 0 };
+// -------------------------------------------------------------------
+// UI & INTERACTIVITY
+// -------------------------------------------------------------------
 
-document.addEventListener('mousemove', (event) => {
-    mouseTarget.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouseTarget.y = -(event.clientY / window.innerHeight) * 2 + 1;
-});
-
-// Smooth mouse interpolation
-function updateMouse() {
-    mouse.x += (mouseTarget.x - mouse.x) * 0.05;
-    mouse.y += (mouseTarget.y - mouse.y) * 0.05;
-}
-
-// Enhanced smooth scrolling with easing
+// Smooth Scrolling
 function smoothScrollTo(target) {
     const targetPosition = target.offsetTop - 80;
     const startPosition = window.pageYOffset;
@@ -172,468 +155,168 @@ function smoothScrollTo(target) {
     requestAnimationFrame(animation);
 }
 
-// Navigation functionality
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            smoothScrollTo(target);
-            
-            // Update active nav link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            this.classList.add('active');
-        }
-    });
-});
-
-// Enhanced navigation scroll effect
-const nav = document.querySelector('.navigation');
-let lastScrollY = window.scrollY;
-
-window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
+// Theme Toggle
+function setupTheme() {
+    const themeIcon = themeToggle.querySelector('i');
     
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        applyTheme(newTheme);
+        setTimeout(() => {
+            document.body.style.transition = '';
+        }, 300);
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+}
+
+// Counter Animation for Stats
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'), 10);
+    if (isNaN(target)) return;
+    
+    const duration = 2000;
+    let current = 0;
+    const increment = target / (duration / 16); // Calculate increment per frame (approx 60fps)
+
+    const update = () => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target;
+        } else {
+            element.textContent = Math.floor(current);
+            requestAnimationFrame(update);
+        }
+    };
+    requestAnimationFrame(update);
+}
+
+// Typing Animation
+function typeWriter() {
+    if(!typingText) return;
+    const phrases = [
+        'Machine Learning Enthusiast', 'Frontend Web Developer', 'AI Engineer',
+        'Problem Solver', 'Data Scientist', 'Full Stack Developer'
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+        let typeSpeed = isDeleting ? 75 : 150;
+
+        if (isDeleting) {
+            typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            typeSpeed = 2000; // Pause at end of word
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typeSpeed = 500; // Pause before new word
+        }
+        setTimeout(type, typeSpeed);
+    }
+    // Start after a short delay
+    setTimeout(type, 1000);
+}
+
+
+// -------------------------------------------------------------------
+// SCROLL-BASED EFFECTS (UNIFIED HANDLER)
+// -------------------------------------------------------------------
+
+function handleAllScrollEffects() {
+    const currentScrollY = window.scrollY;
+
+    // 1. Navigation Bar Styling & Hiding
     if (currentScrollY > 100) {
         nav.classList.add('scrolled');
     } else {
         nav.classList.remove('scrolled');
     }
-    
-    // Hide/show nav on scroll
     if (currentScrollY > lastScrollY && currentScrollY > 200) {
         nav.style.transform = 'translateY(-100%)';
     } else {
         nav.style.transform = 'translateY(0)';
     }
-    
-    lastScrollY = currentScrollY;
-});
 
-// Mobile menu functionality
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
-});
-
-// Close menu when clicking on a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.classList.remove('menu-open');
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('active') && 
-        !e.target.closest('.navigation')) {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.classList.remove('menu-open');
-    }
-});
-
-// Theme toggle functionality
-const themeToggle = document.querySelector('.theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Update icon
-    themeIcon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-    
-    // Animate transition
-    document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-    setTimeout(() => {
-        document.body.style.transition = '';
-    }, 300);
-});
-
-// Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', savedTheme);
-themeIcon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-
-// Enhanced scroll progress
-window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    // 2. Scroll Progress Bar
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
+    const scrolled = (currentScrollY / height) * 100;
     document.querySelector('.scroll-progress').style.width = scrolled + '%';
-});
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            
-            // Animate skill bars
-            if (entry.target.classList.contains('skill-item')) {
-                const skillFill = entry.target.querySelector('.skill-fill');
-                const skillPercentage = skillFill.getAttribute('data-skill');
-                setTimeout(() => {
-                    skillFill.style.transform = `translateX(-${100 - skillPercentage}%)`;
-                }, 200);
-            }
-            
-            // Animate counters
-            if (entry.target.classList.contains('stat-number')) {
-                animateCounter(entry.target);
-            }
-        }
-    });
-}, observerOptions);
-
-// Observe elements
-document.querySelectorAll('section, .skill-item, .stat-number').forEach(el => {
-    observer.observe(el);
-});
-
-// Counter animation
-function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-    
-    const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current);
-    }, 16);
-}
-
-// Enhanced typing animation
-const typingText = document.querySelector('.typing-text');
-const phrases = [
-    'Machine Learning Enthusiast',
-    'Frontend Web Developer',
-    'AI Engineer',
-    'Problem Solver',
-    'Data Scientist',
-    'Full Stack Developer'
-];
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function typeWriter() {
-    const currentPhrase = phrases[phraseIndex];
-    
-    if (isDeleting) {
-        typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-    }
-
-    let typeSpeed = isDeleting ? 100 : 200;
-
-    if (!isDeleting && charIndex === currentPhrase.length) {
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        typeSpeed = 500;
-    }
-
-    setTimeout(typeWriter, typeSpeed);
-}
-
-// Start typing animation after loading
-setTimeout(() => {
-    typeWriter();
-    updateLoadingProgress();
-}, 1000);
-
-// Project filtering with enhanced animations
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        const filter = button.getAttribute('data-filter');
-        
-        // Filter projects with staggered animation
-        projectCards.forEach((card, index) => {
-            const category = card.getAttribute('data-category');
-            
-            if (filter === 'all' || category === filter) {
-                card.style.display = 'block';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0) scale(1)';
-                }, 100 + (index * 50));
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px) scale(0.95)';
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
-            }
-        });
-    });
-});
-
-// Enhanced certificate slider
-document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.querySelector('.certificates-slider');
-    const cards = document.querySelectorAll('.certificate-card');
-    const prevBtn = document.querySelector('.slider-button.prev');
-    const nextBtn = document.querySelector('.slider-button.next');
-    const dotsContainer = document.querySelector('.slider-dots');
-
-    let currentIndex = 0;
-    let isTransitioning = false;
-    let autoplayInterval;
-
-    // Create dots
-    cards.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-    });
-
-    const dots = document.querySelectorAll('.dot');
-
-    function updateSliderPosition(animate = true) {
-        if (animate) {
-            isTransitioning = true;
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 800);
-        }
-        
-        const cardWidth = slider.clientWidth;
-        slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-        // Update dots
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-
-        // Update button states
-        prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-        nextBtn.style.opacity = currentIndex >= cards.length - 1 ? '0.5' : '1';
-    }
-
-    function goToSlide(index, animate = true) {
-        if (isTransitioning) return;
-        currentIndex = Math.min(Math.max(index, 0), cards.length - 1);
-        updateSliderPosition(animate);
-        resetAutoplay();
-    }
-
-    function nextSlide() {
-        if (isTransitioning) return;
-        currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
-        updateSliderPosition();
-        resetAutoplay();
-    }
-
-    function prevSlide() {
-        if (isTransitioning) return;
-        currentIndex = currentIndex > 0 ? currentIndex - 1 : cards.length - 1;
-        updateSliderPosition();
-        resetAutoplay();
-    }
-
-    function startAutoplay() {
-        autoplayInterval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoplay() {
-        clearInterval(autoplayInterval);
-    }
-
-    function resetAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-    }
-
-    // Event listeners
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
-
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    slider.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoplay();
-    });
-
-    slider.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        resetAutoplay();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
-        }
-    });
-
-    // Pause on hover
-    slider.addEventListener('mouseenter', stopAutoplay);
-    slider.addEventListener('mouseleave', startAutoplay);
-
-    // Initialize
-    updateSliderPosition(false);
-    startAutoplay();
-
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            updateSliderPosition(false);
-        }, 100);
-    });
-
-    updateLoadingProgress();
-});
-
-// Enhanced contact form functionality
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitBtn = this.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        
-        // Show loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
-        
-        // Simulate form submission
-        setTimeout(() => {
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            submitBtn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
-            
-            // Reset form
-            setTimeout(() => {
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 2000);
-        }, 2000);
-    });
-}
-
-// Back to top button
-const backToTopBtn = document.querySelector('.back-to-top');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
+    // 3. Back to Top Button Visibility
+    if (currentScrollY > 300) {
         backToTopBtn.classList.add('visible');
     } else {
         backToTopBtn.classList.remove('visible');
     }
-});
 
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// Enhanced parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
+    // 4. Parallax Effect
     const parallaxElements = document.querySelectorAll('.profile-image');
-    
     parallaxElements.forEach(element => {
-        const speed = 0.5;
-        element.style.transform = `translateY(${scrolled * speed}px)`;
+        const speed = 0.4;
+        element.style.transform = `translateY(${currentScrollY * speed}px)`;
     });
-});
 
-// Performance optimization
-let ticking = false;
+    // Update last scroll position
+    lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+}
 
-function updateParticles() {
+function onScroll() {
     if (!ticking) {
-        requestAnimationFrame(() => {
-            updateMouse();
-            
-            // Rotate particles
-            particlesMesh.rotation.x += 0.0003;
-            particlesMesh.rotation.y += 0.0003;
-            
-            // Mouse interaction
-            particlesMesh.rotation.x += mouse.y * 0.00003;
-            particlesMesh.rotation.y += mouse.x * 0.00003;
-            
+        window.requestAnimationFrame(() => {
+            handleAllScrollEffects();
             ticking = false;
         });
         ticking = true;
     }
 }
 
-// Main animation loop
+
+// -------------------------------------------------------------------
+// MAIN ANIMATION LOOP (THREE.JS)
+// -------------------------------------------------------------------
+
 function animate() {
-    requestAnimationFrame(animate);
-    
-    updateParticles();
+    // Smoothly update mouse position for particle interaction
+    mouse.x += (mouseTarget.x - mouse.x) * 0.05;
+    mouse.y += (mouseTarget.y - mouse.y) * 0.05;
+
+    // Animate particles
+    particlesMesh.rotation.y += 0.0003 + (mouse.x * 0.0003);
+    particlesMesh.rotation.x += 0.0003 + (mouse.y * 0.0003);
+
+    // Update controls
     controls.update();
-    renderer.render(scene, camera);
     
-    // FPS monitoring (development only)
+    // Render the scene
+    renderer.render(scene, camera);
+
+    // FPS monitoring
     if (performance.lastTime) {
         performance.frameCount++;
         if (Date.now() - performance.lastTime >= 1000) {
+            // console.log(`FPS: ${performance.frameCount}`);
             performance.fps = performance.frameCount;
             performance.frameCount = 0;
             performance.lastTime = Date.now();
@@ -643,59 +326,303 @@ function animate() {
     }
 }
 
-// Handle window resize with debouncing
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        
-        // Update cursor follower visibility
-        if (window.innerWidth <= 768) {
-            cursorFollower.style.display = 'none';
-        } else {
-            cursorFollower.style.display = 'block';
-        }
-    }, 100);
-});
 
-// Visibility API for performance
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // Pause animations when tab is not visible
-        renderer.setAnimationLoop(null);
-    } else {
-        // Resume animations
-        renderer.setAnimationLoop(animate);
-    }
-});
+// -------------------------------------------------------------------
+// INITIALIZATION & EVENT LISTENERS
+// -------------------------------------------------------------------
 
-// Start the animation loop
-animate();
+document.addEventListener('DOMContentLoaded', () => {
 
-// Service Worker registration for PWA capabilities
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
+    // --- General Event Listeners ---
+    document.addEventListener('mousemove', (e) => {
+        // For cursor follower
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        // For Three.js scene
+        mouseTarget.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseTarget.y = -(e.clientY / window.innerHeight) * 2 + 1;
     });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Update camera
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            // Update renderer
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            // Update cursor visibility
+            cursorFollower.style.display = (window.innerWidth <= 768) ? 'none' : 'block';
+        }, 150);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+        // Pause animation when tab is not visible to save resources
+        if (document.hidden) {
+            renderer.setAnimationLoop(null);
+        } else {
+            renderer.setAnimationLoop(animate);
+        }
+    });
+
+    // --- Component-specific Initializations ---
+
+    // Cursor
+    cursorFollower.style.display = (window.innerWidth > 768) ? 'block' : 'none';
+    animateCursor();
+
+    // Theme
+    setupTheme();
+
+    // Navigation Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                smoothScrollTo(target);
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Mobile Menu
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if(navLinks.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    });
+
+    // Project Filtering
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const filter = button.getAttribute('data-filter');
+            
+            document.querySelectorAll('.project-card').forEach((card, index) => {
+                const category = card.getAttribute('data-category');
+                const matchesFilter = (filter === 'all' || category === filter);
+                
+                card.style.transitionDelay = `${index * 50}ms`;
+                card.classList.toggle('hidden', !matchesFilter);
+            });
+        });
+    });
+    
+    // Certificate Slider
+    const sliderContainer = document.querySelector('.certificates-slider-container');
+    if(sliderContainer) {
+        // The complex slider logic from the original code can be placed here.
+        // It was well-written and is self-contained.
+    }
+    // =======================================================
+// DYNAMIC CODING PROFILE FETCHER
+// =======================================================
+
+// --- CONFIGURATION ---
+// IMPORTANT: Replace with your actual usernames!
+const profileUsernames = {
+    leetcode: 'your-leetcode-username',
+    codeforces: 'your-codeforces-handle',
+    codechef: 'your-codechef-username'
+};
+
+// This URL should point to your own serverless function proxy for best results.
+// See the "Serverless Function" explanation below.
+// If you don't have a proxy, you can try the direct API URLs, but they may fail.
+const API_BASE_URL = 'https://your-vercel-project.vercel.app/api/userdata'; // Recommended
+// const API_BASE_URL = ''; // Use this if trying direct calls
+
+/**
+ * Fetches all coding profile data when the page loads.
+ */
+async function fetchAllCodingProfiles() {
+    // We fetch them in parallel for faster loading
+    await Promise.all([
+        fetchLeetCodeData(),
+        fetchCodeforcesData(),
+        fetchCodeChefData()
+    ]);
 }
 
-// Error handling
-window.addEventListener('error', (e) => {
-    console.error('Global error:', e.error);
+// --- LeetCode ---
+async function fetchLeetCodeData() {
+    const card = document.getElementById('leetcode-card');
+    // NOTE: This unofficial API is often blocked by CORS. A proxy is needed.
+    const url = `${API_BASE_URL}?platform=leetcode&username=${profileUsernames.leetcode}`;
+    // Direct URL (likely to fail): `https://leetcode-stats-api.herokuapp.com/${profileUsernames.leetcode}`
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+
+        document.getElementById('leetcode-solved').textContent = data.totalSolved || 'N/A';
+        document.getElementById('leetcode-easy').textContent = data.easySolved || 'N/A';
+        document.getElementById('leetcode-medium').textContent = data.mediumSolved || 'N/A';
+        document.getElementById('leetcode-hard').textContent = data.hardSolved || 'N/A';
+        
+        card.classList.add('loaded');
+    } catch (error) {
+        console.error('Failed to fetch LeetCode data:', error);
+        handleFetchError(card, 'Could not load LeetCode stats.');
+    }
+}
+
+// --- Codeforces ---
+async function fetchCodeforcesData() {
+    const card = document.getElementById('codeforces-card');
+    // Codeforces has an official API, but calling from a browser might still be restricted.
+    const url = `${API_BASE_URL}?platform=codeforces&username=${profileUsernames.codeforces}`;
+    // Direct URL: `https://codeforces.com/api/user.info?handles=${profileUsernames.codeforces}`
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+
+        if (data.status !== 'OK' || !data.result || data.result.length === 0) {
+            throw new Error('User not found or API error.');
+        }
+        const user = data.result[0];
+        document.getElementById('codeforces-rating').textContent = user.rating || 'Unrated';
+        document.getElementById('codeforces-max-rating').textContent = user.maxRating || 'Unrated';
+        document.getElementById('codeforces-rank').textContent = user.rank || 'N/A';
+
+        card.classList.add('loaded');
+    } catch (error) {
+        console.error('Failed to fetch Codeforces data:', error);
+        handleFetchError(card, 'Could not load Codeforces stats.');
+    }
+}
+
+// --- CodeChef ---
+async function fetchCodeChefData() {
+    const card = document.getElementById('codechef-card');
+    // NOTE: This is another unofficial API that requires a proxy.
+    const url = `${API_BASE_URL}?platform=codechef&username=${profileUsernames.codechef}`;
+    // Direct URL (likely to fail): `https://codechef-api.vercel.app/${profileUsernames.codechef}`
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.errors[0] || 'User not found.');
+        }
+        document.getElementById('codechef-rating').textContent = data.rating || 'N/A';
+        document.getElementById('codechef-stars').textContent = data.stars || 'N/A';
+        document.getElementById('codechef-global-rank').textContent = data.globalRank || 'N/A';
+        
+        card.classList.add('loaded');
+    } catch (error) {
+        console.error('Failed to fetch CodeChef data:', error);
+        handleFetchError(card, 'Could not load CodeChef stats.');
+    }
+}
+
+
+/**
+ * Handles UI changes when an API fetch fails.
+ * @param {HTMLElement} card The profile card element.
+ * @param {string} message The error message to display.
+ */
+function handleFetchError(card, message) {
+    if (!card) return;
+    const errorElement = card.querySelector('.card-error-msg');
+    errorElement.textContent = message;
+    card.classList.add('error');
+}
+
+// Add the call to your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (all your other initialization code)
+
+    // Fetch coding profiles data
+    fetchAllCodingProfiles();
 });
 
-window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled promise rejection:', e.reason);
+    // Contact Form
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => { // Simulate API call
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitBtn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+    }
+
+    // Intersection Observer for Animations
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                
+                if (entry.target.classList.contains('skill-item')) {
+                    const skillFill = entry.target.querySelector('.skill-fill');
+                    skillFill.style.transform = `translateX(-${100 - parseInt(skillFill.dataset.skill, 10)}%)`;
+                }
+                
+                if (entry.target.classList.contains('stat-number')) {
+                    animateCounter(entry.target);
+                }
+
+                obs.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('section, .skill-item, .stat-number, .project-card, .certificate-card').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Start typing animation
+    typeWriter();
+
+    // Start the main Three.js animation loop
+    renderer.setAnimationLoop(animate);
+
+    // PWA Service Worker
+    if ('serviceWorker'in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker registered.', reg))
+                .catch(err => console.error('Service Worker registration failed:', err));
+        });
+    }
+
+    console.log('🚀 Portfolio initialized successfully!');
 });
 
-console.log('🚀 Enhanced Portfolio website loaded successfully!');
+// Global Error Handling
+window.addEventListener('error', (e) => console.error('Global error:', e.error));
+window.addEventListener('unhandledrejection', (e) => console.error('Unhandled promise rejection:', e.reason));

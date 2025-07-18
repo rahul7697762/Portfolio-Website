@@ -38,14 +38,6 @@
     </script>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p>Loading Portfolio...</p>
-        </div>
-    </div>
-
     <!-- Scroll Progress -->
     <div class="scroll-progress"></div>
     
@@ -115,7 +107,7 @@
                             <i class="fas fa-eye"></i>
                             View Work
                         </a>
-                        <a href="./resume.pdf" class="cta-button outline" download>
+                        <a href="./RahulMl.pdf" class="cta-button outline" download>
                             <i class="fas fa-download"></i>
                             Download CV
                         </a>
@@ -906,7 +898,7 @@
                         </div>
                         <div class="contact-details">
                             <h3>Phone</h3>
-                            <p>+91 12345 67890</p>
+                            <p>+916398792951</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -944,6 +936,98 @@
             </div>
         </section>
     </main>
+
+    <!-- Competitive Programming Profiles Section -->
+   <!-- ======================================================= -->
+<!-- ============ CODING PROFILES SECTION ================== -->
+<!-- ======================================================= -->
+<section id="coding-profiles" class="section">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Coding Profiles</h2>
+       
+
+        <div class="profiles-grid">
+            <!-- LeetCode Card -->
+            <a href="https://leetcode.com/rahul_not_found/" target="_blank" rel="noopener noreferrer" class="profile-card" id="leetcode-card">
+                <div class="profile-header">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/leetcode.svg" alt="LeetCode Logo" class="profile-logo">
+                    <h3>LeetCode</h3>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span>Problems Solved</span>
+                        <span class="stat-value" id="leetcode-solved">...</span>
+                    </div>
+                    <div class="stat-item easy">
+                        <span>Easy</span>
+                        <span class="stat-value" id="leetcode-easy">...</span>
+                    </div>
+                    <div class="stat-item medium">
+                        <span>Medium</span>
+                        <span class="stat-value" id="leetcode-medium">...</span>
+                    </div>
+                    <div class="stat-item hard">
+                        <span>Hard</span>
+                        <span class="stat-value" id="leetcode-hard">...</span>
+                    </div>
+                </div>
+                <div class="card-loader"></div>
+                <div class="card-error-msg"></div>
+            </a>
+
+            <!-- Codeforces Card -->
+            <a href="https://codeforces.com/profile/rahul_6398" target="_blank" rel="noopener noreferrer" class="profile-card" id="codeforces-card">
+                <div class="profile-header">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/codeforces.svg" alt="Codeforces Logo" class="profile-logo">
+                    <h3>Codeforces</h3>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span>Rating</span>
+                        <span class="stat-value" id="codeforces-rating">...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Max Rating</span>
+                        <span class="stat-value" id="codeforces-max-rating">...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Rank</span>
+                        <span class="stat-value" id="codeforces-rank">...</span>
+                    </div>
+                </div>
+                <div class="card-loader"></div>
+                <div class="card-error-msg"></div>
+            </a>
+
+            <!-- CodeChef Card -->
+            <a href="https://www.codechef.com/rahul_mldev" target="_blank" rel="noopener noreferrer" class="profile-card" id="codechef-card">
+                <div class="profile-header">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/codechef.svg" alt="CodeChef Logo" class="profile-logo">
+                    <h3>CodeChef</h3>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span>Rating</span>
+                        <span class="stat-value" id="codechef-rating">...</span>
+                    </div>
+                     <div class="stat-item">
+                        <span>Stars</span>
+                        <span class="stat-value" id="codechef-stars">...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Global Rank</span>
+                        <span class="stat-value" id="codechef-global-rank">...</span>
+                    </div>
+                </div>
+                <div class="card-loader"></div>
+                <div class="card-error-msg"></div>
+            </a>
+            
+            <!-- You can add HackerRank similarly if you find a reliable API -->
+
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
