@@ -44,7 +44,7 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 body {
@@ -95,7 +95,7 @@ body {
 }
 
 .loading-content p {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     margin-top: 1rem;
 }
 
@@ -169,14 +169,14 @@ body {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
 }
 
 .brand-icon {
-    font-size: 1.2rem;
+    font-size: 2rem;
     animation: float 3s ease-in-out infinite;
 }
 
@@ -196,7 +196,7 @@ body {
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 1rem;
     position: relative;
     padding: 0.3rem 0.6rem;
     border-radius: 20px;
@@ -396,7 +396,7 @@ section.animate-in {
     backdrop-filter: blur(10px);
     padding: 0.3rem 0.6rem;
     border-radius: 15px;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     color: var(--text-color);
     border: 1px solid rgba(45, 90, 39, 0.3);
     display: flex;
@@ -440,7 +440,7 @@ section.animate-in {
 
 .name {
     display: block;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
     background: var(--gradient-primary);
     background-clip: text;
@@ -450,7 +450,7 @@ section.animate-in {
 }
 
 .typing-text {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--text-secondary);
     margin-bottom: 1.2rem;
     position: relative;
@@ -484,7 +484,7 @@ section.animate-in {
     background: var(--surface-color);
     border: 1px solid rgba(45, 90, 39, 0.2);
     border-radius: 20px;
-    font-size: 0.7rem;
+    font-size: 1rem;
     color: var(--text-color);
     transition: var(--transition);
     backdrop-filter: blur(10px);
@@ -492,7 +492,7 @@ section.animate-in {
 
 .tag i {
     color: var(--primary-color);
-    font-size: 0.7rem;
+    font-size: 1rem;
 }
 
 .tag.achievement {
@@ -673,7 +673,7 @@ section.animate-in {
 }
 
 .about-intro {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     line-height: 1.5;
     color: var(--text-secondary);
     margin-bottom: 2rem;
@@ -716,7 +716,7 @@ section.animate-in {
 .stat-label {
     color: var(--text-secondary);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .about-details {
@@ -746,13 +746,13 @@ section.animate-in {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .about-section p {
     color: var(--text-secondary);
     line-height: 1.4;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .education-card {
@@ -765,20 +765,20 @@ section.animate-in {
 
 .education-card h4 {
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 0.3rem;
 }
 
 .education-card .university {
     color: var(--primary-color);
-    font-size: 0.85rem;
+    font-size: 1rem;
     margin-bottom: 0.3rem;
     font-weight: 600;
 }
 
 .education-card .duration {
     color: var(--text-secondary);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     margin-bottom: 0.6rem;
     display: flex;
     align-items: center;
@@ -797,7 +797,7 @@ section.animate-in {
     color: var(--primary-color);
     padding: 0.2rem 0.5rem;
     border-radius: 12px;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     transition: var(--transition);
 }
 
@@ -833,13 +833,13 @@ section.animate-in {
 
 .highlight i {
     color: var(--primary-color);
-    font-size: 0.8rem;
+    font-size: 1.1rem;
 }
 
 .highlight span {
     color: var(--text-color);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
 }
 
 /* Skills Section */
@@ -870,7 +870,7 @@ section.animate-in {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .skills-grid {
@@ -913,7 +913,7 @@ section.animate-in {
     font-weight: 600;
     margin-bottom: 0.3rem;
     color: var(--text-color);
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .skill-bar {
@@ -937,7 +937,7 @@ section.animate-in {
 }
 
 .skill-percentage {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     color: var(--primary-color);
     font-weight: 600;
 }
@@ -1017,7 +1017,7 @@ section.animate-in {
 
 .timeline-content h3 {
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 0.2rem;
 }
 
@@ -1029,7 +1029,7 @@ section.animate-in {
 
 .timeline-content p {
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     line-height: 1.4;
     margin-bottom: 0.8rem;
 }
@@ -1963,7 +1963,7 @@ section.animate-in {
 
 @media (max-width: 768px) {
     html {
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .menu-toggle {
@@ -2078,7 +2078,7 @@ section.animate-in {
 
 @media (max-width: 480px) {
     html {
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .profile-image {

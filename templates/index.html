@@ -12,17 +12,17 @@
     <meta property="og:title" content="Rahul's Portfolio - AI & ML Engineer">
     <meta property="og:description" content="Aspiring AI & ML Engineer and Frontend Developer">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./IMG_20250604_0938251.jpg">
+    <meta property="og:image" content="photos/IMG_20250604_0938251.jpg">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="./IMG_20250604_0938251.jpg" as="image">
+    <link rel="preload" href="photos/IMG_20250604_0938251.jpg" as="image">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +65,7 @@
                 <li><a href="#projects" data-section="projects">Projects</a></li>
                 <li><a href="#certificates" data-section="certificates">Certificates</a></li>
                 <li><a href="#testimonials" data-section="testimonials">Testimonials</a></li>
-                <li><a href="#blog" data-section="blog">Blog</a></li>
+                <li><a href="blog.html" data-section="blog">Blog</a></li>
                 <li><a href="#contact" data-section="contact">Contact</a></li>
             </ul>
             <button class="theme-toggle" aria-label="Toggle theme">
@@ -80,7 +80,7 @@
         <section class="hero" id="home">
             <div class="hero-content">
                 <div class="profile-image">
-                    <img src="IMG_20250604_0938251.jpg" alt="Rahul's Profile Picture" loading="eager">
+                    <img src="../photos/IMG_20250604_0938251.jpg" alt="Rahul's Profile Picture" loading="eager">
                     <div class="profile-ring"></div>
                     <div class="profile-status">
                         <span class="status-dot"></span>
@@ -107,7 +107,7 @@
                             <i class="fas fa-eye"></i>
                             View Work
                         </a>
-                        <a href="./RahulMl.pdf" class="cta-button outline" download>
+                        <a href="../Resumes/RahulMl.pdf" class="cta-button outline" download>
                             <i class="fas fa-download"></i>
                             Download CV
                         </a>
@@ -648,7 +648,7 @@
                 <button class="slider-button prev" aria-label="Previous certificate">❮</button>
                 <div class="certificates-slider">
                     <div class="certificate-card">
-                        <img src="n1.png" alt="Networking Certificate" loading="lazy">
+                        <img src="../photos/n1.png" alt="Networking Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Computer Networking</h3>
                             <p>Professional Networking Certification</p>
@@ -661,7 +661,7 @@
                     </div>
 
                     <div class="certificate-card">
-                        <img src="python.png" alt="Python Certificate" loading="lazy">
+                        <img src="../photos/python.png" alt="Python Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Python Programming</h3>
                             <p>Advanced Python Development</p>
@@ -674,7 +674,7 @@
                     </div>
 
                     <div class="certificate-card">
-                        <img src="sql.png" alt="SQL Certificate" loading="lazy">
+                        <img src="../photos/sql.png" alt="SQL Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>SQL Database</h3>
                             <p>Database Management & SQL</p>
@@ -687,7 +687,7 @@
                     </div>
 
                     <div class="certificate-card">
-                        <img src="cpp.png" alt="C++ Certificate" loading="lazy">
+                        <img src="../photos/cpp.png" alt="C++ Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>C++ Programming</h3>
                             <p>Advanced C++ Development</p>
@@ -700,7 +700,7 @@
                     </div>
 
                     <div class="certificate-card">
-                        <img src="dsa.png" alt="DSA Certificate" loading="lazy">
+                        <img src="../photos/dsa.png" alt="DSA Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Data Structures & Algorithms</h3>
                             <p>Advanced DSA Certification</p>
@@ -713,7 +713,7 @@
                     </div>
 
                     <div class="certificate-card">
-                        <img src="c.png" alt="C Programming Certificate" loading="lazy">
+                        <img src="../photos/c.png" alt="C Programming Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>C Programming</h3>
                             <p>Core C Programming</p>
@@ -726,7 +726,7 @@
                     </div>
 
                     <div class="certificate-card">
-                        <img src="n2.png" alt="Internetworking Certificate" loading="lazy">
+                        <img src="../photos/n2.png" alt="Internetworking Certificate" loading="lazy">
                         <div class="certificate-details">
                             <h3>Internetworking Technologies</h3>
                             <p>Advanced Network Infrastructure</p>
@@ -817,6 +817,7 @@
                 </div>
             </div>
         </section>
+        
 
         <!-- Blog Section -->
         <section class="blog" id="blog">
@@ -1077,6 +1078,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script type="module" src="main.js"></script>
+    <script type="module" src="../javascript/main.js"></script>
+    <script type="module" src="../javascript/sw.js"></script>
 </body>
 </html>
