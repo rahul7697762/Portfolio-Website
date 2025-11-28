@@ -25,13 +25,27 @@ const Projects = () => {
             title: 'Crop Guidance System',
             category: 'ml',
             image: 'https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg?auto=compress&cs=tinysrgb&w=800',
-            status: 'In Progress',
-            statusClass: 'in-progress',
+            status: 'Completed',
+            statusClass: 'completed',
             icon: 'fa-seedling',
-            description: 'An intelligent ML-powered system that provides guidance for crop selection and management based on soil conditions, weather patterns, and historical data. Implementing advanced algorithms to help farmers make informed decisions for optimal crop yield.',
-            tech: ['Python', 'Flask', 'NumPy', 'Pandas', 'Machine Learning', 'Data Analysis'],
+            description: 'Engineered a multi-model crop recommendation pipeline using CatBoost and LightGBM (~89% accuracy). Integrated live Weather API and market price endpoints for context-aware insights.',
+            tech: ['React.js', 'Firebase', 'Flask API', 'Machine Learning', 'CatBoost'],
             links: {
                 github: 'https://github.com/rahul7697762/Crop-Guidance-System.git',
+                demo: '#'
+            }
+        },
+        {
+            title: 'PrepWise AI Platform',
+            category: 'web',
+            image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
+            status: 'Live',
+            statusClass: 'completed',
+            icon: 'fa-microphone',
+            description: 'AI-driven interview practice platform enabling real-time voice-based mock interviews using Vapi AI. Features dynamic performance dashboards and secure Firebase authentication.',
+            tech: ['Next.js', 'TypeScript', 'Gemini', 'Firebase', 'Vapi AI'],
+            links: {
+                github: '#',
                 demo: '#'
             }
         },
@@ -43,52 +57,10 @@ const Projects = () => {
             statusClass: 'completed',
             icon: 'fa-code',
             description: 'A modern 3D portfolio website showcasing my skills and projects. Features interactive animations, responsive design, and seamless user experience with Three.js integration.',
-            tech: ['HTML5', 'CSS3', 'JavaScript', 'Three.js', 'Vite'],
+            tech: ['React.js', 'Three.js', 'Vite', 'CSS3'],
             links: {
                 github: 'https://github.com/rahul7697762/Portfolio-Website.git',
                 demo: 'https://portfolio-website-nine-drab-37.vercel.app/'
-            }
-        },
-        {
-            title: 'Kids Tutor',
-            category: 'web',
-            image: 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800',
-            status: 'Completed',
-            statusClass: 'completed',
-            icon: 'fa-chalkboard-teacher',
-            description: 'An interactive educational platform designed to make learning fun and engaging for children. Leverages Google\'s Gemini AI for intelligent tutoring, integrates YouTube API for educational content, and uses MongoDB for data persistence.',
-            tech: ['React.js', 'HTML5', 'CSS3', 'JavaScript', 'Gemini AI', 'YouTube API', 'MongoDB'],
-            links: {
-                github: '#',
-                demo: 'https://kid-tutor-5etq.vercel.app/'
-            }
-        },
-        {
-            title: 'Data Analysis Dashboard',
-            category: 'ml',
-            image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
-            status: 'Progress',
-            statusClass: 'progress',
-            icon: 'fa-chart-line',
-            description: 'A comprehensive data visualization dashboard built with Python and Streamlit. Features interactive charts, real-time data processing, and machine learning insights for business intelligence.',
-            tech: ['Python', 'Streamlit', 'Pandas', 'Plotly', 'Scikit-learn'],
-            links: {
-                github: '#',
-                demo: '#'
-            }
-        },
-        {
-            title: 'AI-Powered Interview Platform',
-            category: 'web',
-            image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=800',
-            status: 'Completed',
-            statusClass: 'completed',
-            icon: 'fa-robot',
-            description: 'An intelligent interview platform that leverages AI and NLP to conduct automated screenings, analyze candidate responses, and provide instant feedback. Features include real-time voice-to-text transcription, sentiment analysis, and AI-generated evaluation reports.',
-            tech: ['React.js', 'Flask', 'Python', 'OpenAI API', 'SpeechRecognition', 'MongoDB'],
-            links: {
-                github: '#',
-                demo: '#'
             }
         },
         {
@@ -97,9 +69,9 @@ const Projects = () => {
             image: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=800',
             status: 'Completed',
             statusClass: 'completed',
-            icon: 'fa-robot',
-            description: 'Overview We have developed Math Solving Assistant, a chatbot website designed to help users solve mathematical problems, chat with an AI assistant, and analyze images. The platform is built using Gemini’s API, written in Python, and powered by Streamlit for the user interface.',
-            tech: ['Python', 'NLP', 'TensorFlow', 'Flask', 'OpenAI API'],
+            icon: 'fa-calculator',
+            description: 'Chatbot website designed to help users solve mathematical problems and analyze images. Powered by Gemini’s API and built with Python and Streamlit.',
+            tech: ['Python', 'Gemini API', 'Streamlit', 'Computer Vision'],
             links: {
                 github: 'https://github.com/rahul7697762/Ai-Math-Doubt-Solver',
                 demo: 'https://ai-math-doubts-soler.onrender.com/'
@@ -151,13 +123,13 @@ const Projects = () => {
                 <p className="section-subtitle">Showcasing my latest work and innovations</p>
             </div>
             <div className="projects-filter">
-                {['all', 'ml', 'web', 'mobile'].map(cat => (
+                {['all', 'ml', 'web'].map(cat => (
                     <button
                         key={cat}
                         className={`filter-btn ${filter === cat ? 'active' : ''}`}
                         onClick={() => setFilter(cat)}
                     >
-                        {cat === 'ml' ? 'Machine Learning' : cat === 'web' ? 'Web Development' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+                        {cat === 'ml' ? 'AI & ML' : cat === 'web' ? 'Web Dev' : 'All Projects'}
                     </button>
                 ))}
             </div>

@@ -1,24 +1,23 @@
 import React, { useEffect, useRef } from 'react';
 
 const Skills = () => {
-    const skillsRef = useRef(null);
+    const sectionRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-in');
-                    const progressBars = entry.target.querySelectorAll('.skill-fill');
+                    const progressBars = entry.target.querySelectorAll('.progress');
                     progressBars.forEach(bar => {
                         bar.style.transform = 'translateX(0)';
                     });
-                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
 
-        if (skillsRef.current) {
-            observer.observe(skillsRef.current);
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
         }
 
         return () => observer.disconnect();
@@ -26,63 +25,69 @@ const Skills = () => {
 
     const skillCategories = [
         {
-            title: 'Programming Languages',
+            title: 'Languages',
             icon: 'fa-code',
             skills: [
-                { name: 'Python', icon: 'python/python-original.svg', level: 100 },
-                { name: 'C++', icon: 'cplusplus/cplusplus-original.svg', level: 100 },
-                { name: 'C', icon: 'c/c-original.svg', level: 100 },
-                { name: 'Java', icon: 'java/java-original.svg', level: 100 },
+                { name: 'Python', level: 90 },
+                { name: 'C++', level: 85 },
+                { name: 'JavaScript', level: 85 },
+                { name: 'SQL', level: 80 }
             ]
         },
         {
-            title: 'Web Technologies',
-            icon: 'fa-globe',
+            title: 'ML & AI',
+            icon: 'fa-brain',
             skills: [
-                { name: 'HTML5', icon: 'html5/html5-original.svg', level: 100 },
-                { name: 'CSS3', icon: 'css3/css3-original.svg', level: 100 },
-                { name: 'React.js', icon: 'react/react-original.svg', level: 100 },
-                { name: 'JavaScript', icon: 'javascript/javascript-original.svg', level: 100 },
+                { name: 'Machine Learning', level: 85 },
+                { name: 'LangChain & LLMs', level: 80 },
+                { name: 'RAG & Vector Search', level: 75 },
+                { name: 'Preprocessing', level: 85 }
             ]
         },
         {
-            title: 'Tools & Frameworks',
+            title: 'Frameworks & Tools',
             icon: 'fa-tools',
             skills: [
-                { name: 'Git', icon: 'git/git-original.svg', level: 100 },
-                { name: 'TensorFlow', icon: 'tensorflow/tensorflow-original.svg', level: 100 },
-                { name: 'MySQL', icon: 'mysql/mysql-original.svg', level: 100 },
-                { name: 'Node.js', icon: 'nodejs/nodejs-original.svg', level: 100 },
+                { name: 'React & Next.js', level: 85 },
+                { name: 'Node.js & Express', level: 80 },
+                { name: 'Docker', level: 75 },
+                { name: 'Git & GitHub', level: 90 }
+            ]
+        },
+        {
+            title: 'Backend & Cloud',
+            icon: 'fa-server',
+            skills: [
+                { name: 'Supabase & Firebase', level: 85 },
+                { name: 'MySQL & MongoDB', level: 80 },
+                { name: 'Flask API', level: 80 },
+                { name: 'Vercel & Railway', level: 85 }
             ]
         }
     ];
 
     return (
-        <section className="skills" id="skills" ref={skillsRef}>
+        <section className="skills" id="skills" ref={sectionRef}>
             <div className="section-header">
-                <h2>Skills & Technologies</h2>
+                <h2>Technical Skills</h2>
                 <p className="section-subtitle">My technical expertise and proficiency levels</p>
             </div>
             <div className="skills-container">
                 {skillCategories.map((category, index) => (
                     <div className="skill-category" key={index}>
                         <h3><i className={`fas ${category.icon}`}></i> {category.title}</h3>
-                        <div className="skills-grid">
+                        <div className="skills-list">
                             {category.skills.map((skill, idx) => (
                                 <div className="skill-item" key={idx}>
-                                    <img
-                                        src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.icon}`}
-                                        alt={`${skill.name} logo`}
-                                        className="skill-icon"
-                                    />
                                     <div className="skill-info">
-                                        <span className="skill-name">{skill.name}</span>
-                                        <div className="skill-bar">
-                                            <div
-                                                className="skill-fill"
-                                                style={{ transform: 'translateX(-100%)' }}
-                                            ></div>
-                                        </div>
+                                        <span>{skill.name}</span>
+                                        <span>{skill.level}%</span>
+                                    </div>
+                                    <div className="skill-progress">
+                                        <div
+                                            className="progress"
+                                            style={{ width: `${skill.level}%`, transform: 'translateX(-100%)', transition: 'transform 1s ease-out' }}
+                                        ></div>
                                     </div>
                                 </div>
                             ))}

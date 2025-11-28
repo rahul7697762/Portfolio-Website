@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import profilePhoto from '../assets/photos/profilephoto.jpg';
+import profilePhoto from '../assets/photos/IMG_20250604_0938251.jpg';
 
 const Hero = () => {
     const [text, setText] = useState('');
@@ -9,12 +9,11 @@ const Hero = () => {
     const heroRef = useRef(null);
 
     const phrases = [
-        'Machine Learning Enthusiast',
-        'Frontend Web Developer',
-        'AI Engineer',
+        'AI Developer',
+        'Machine Learning Engineer',
+        'Full Stack Developer',
         'Problem Solver',
-        'Data Scientist',
-        'Full Stack Developer'
+        'Tech Enthusiast'
     ];
 
     useEffect(() => {
@@ -76,9 +75,9 @@ const Hero = () => {
                     </h1>
                     <p className="typing-text">{text}</p>
                     <div className="hero-tags">
-                        <span className="tag"><i className="fas fa-robot"></i> Aspiring AI & ML Engineer</span>
-                        <span className="tag"><i className="fas fa-code"></i> Frontend Developer</span>
-                        <span className="tag achievement"><i className="fas fa-star"></i> 4⭐ in C++, Python, SQL</span>
+                        <span className="tag"><i className="fas fa-robot"></i> AI Developer</span>
+                        <span className="tag"><i className="fas fa-code"></i> Full Stack Developer</span>
+                        <span className="tag achievement"><i className="fas fa-star"></i> LeetCode 1664</span>
                     </div>
                     <div className="hero-actions">
                         <a href="#contact" className="cta-button primary">
@@ -89,15 +88,26 @@ const Hero = () => {
                             <i className="fas fa-eye"></i>
                             View Work
                         </a>
-                        <a href="/Resumes/Machine_Learning.pdf" className="cta-button outline" download>
+                        <a href="https://drive.google.com/file/d/1ezQbnjycwuy_qZ6CbsFUy3FGDgbuVZJ9/view?usp=sharing" className="cta-button outline" download>
                             <i className="fas fa-download"></i>
                             Download CV
                         </a>
                     </div>
                     <div className="skills-pills">
-                        {['HTML', 'CSS', 'Python', 'C', 'DBMS', 'MySQL', 'DSA', 'Advanced C++'].map(skill => (
+                        {['Python', 'C++', 'React', 'Next.js', 'Machine Learning', 'LangChain', 'Docker', 'AWS'].map(skill => (
                             <span className="pill" key={skill}>{skill}</span>
                         ))}
+                    </div>
+                    <div className="social-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem' }}>
+                        <a href="https://www.linkedin.com/in/rahul1232/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '1.5rem' }}>
+                            <i className="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/rahul7697762/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '1.5rem' }}>
+                            <i className="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:rahulsaini11204@gmail.com" style={{ color: 'var(--text-secondary)', fontSize: '1.5rem' }}>
+                            <i className="fas fa-envelope"></i>
+                        </a>
                     </div>
                 </div>
             </div>
