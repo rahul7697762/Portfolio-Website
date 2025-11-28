@@ -1,7 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Projects = () => {
     const [filter, setFilter] = useState('all');
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     const projects = [
         {
@@ -128,7 +145,7 @@ const Projects = () => {
     };
 
     return (
-        <section className="projects" id="projects">
+        <section className="projects" id="projects" ref={sectionRef}>
             <div className="section-header">
                 <h2>Featured Projects</h2>
                 <p className="section-subtitle">Showcasing my latest work and innovations</p>

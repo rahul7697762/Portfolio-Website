@@ -56,11 +56,27 @@ const Certificates = () => {
                 <h2>Certificates & Achievements</h2>
                 <p className="section-subtitle">My Professional Certifications and Technical Achievements</p>
             </div>
-            <div className="slider-container">
+            <div className="slider-container" style={{ overflow: 'hidden' }}>
                 <button className="slider-button prev" onClick={prevSlide} aria-label="Previous certificate">❮</button>
-                <div className="certificates-slider" style={{ transform: `translateX(-${currentIndex * 100}%)`, display: 'flex', transition: 'transform 0.5s ease' }}>
+                <div
+                    className="certificates-slider"
+                    style={{
+                        transform: `translateX(-${(currentIndex * 100) / certificates.length}%)`,
+                        width: `${certificates.length * 100}%`,
+                        display: 'flex',
+                        transition: 'transform 0.5s ease'
+                    }}
+                >
                     {certificates.map((cert, index) => (
-                        <div className="certificate-card" key={index} style={{ minWidth: '100%' }}>
+                        <div
+                            className="certificate-card"
+                            key={index}
+                            style={{
+                                width: `${100 / certificates.length}%`,
+                                flexShrink: 0,
+                                flexGrow: 0
+                            }}
+                        >
                             <img src={cert.img} alt={`${cert.title} Certificate`} loading="lazy" />
                             <div className="certificate-details">
                                 <h3>{cert.title}</h3>

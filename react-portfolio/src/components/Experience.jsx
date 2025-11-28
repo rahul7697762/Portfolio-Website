@@ -1,42 +1,60 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Experience = () => {
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     const experiences = [
         {
-            date: '2023 - Present',
-            title: 'Computer Science Student',
-            company: 'Lovely Professional University, CGPA: 7.6',
-            description: 'Pursuing B.Tech in Computer Science with focus on AI/ML and software development. Maintaining excellent academic performance while working on practical projects.',
-            skills: ['Data Structures', 'Algorithms', 'Machine Learning', 'Software Engineering']
+            date: '2025 - Present',
+            title: 'AI Developer Intern',
+            company: 'Rajni Tech Foundation',
+            description: 'Spearheading the development of AI-driven web solutions. Integrated OpenAI and Gemini APIs to create intelligent chatbots and automated content generation tools. Optimized frontend performance using React.js and reduced API latency by 40%.',
+            skills: ['Generative AI', 'React.js', 'Python', 'API Integration', 'Performance Optimization']
+        },
+        {
+            date: '2024 - 2025',
+            title: 'Freelance Full Stack Developer',
+            company: 'Self-Employed',
+            description: 'Delivered 5+ custom web applications for diverse clients. Built a scalable e-commerce platform with secure payment gateway integration. Implemented responsive designs ensuring 100% mobile compatibility and improved SEO rankings.',
+            skills: ['MERN Stack', 'Next.js', 'Stripe API', 'SEO', 'Client Management']
         },
         {
             date: '2024',
-            title: 'Freelance Developer',
-            company: 'Self-Employed',
-            description: 'Developed multiple web applications and machine learning projects for clients. Specialized in creating responsive websites and data analysis solutions.',
-            skills: ['React.js', 'Python', 'Data Analysis', 'Web Development']
-        },
-        {
-            date: '2025',
             title: 'Open Source Contributor',
             company: 'GitHub Community',
-            description: 'Actively contributing to open source projects, particularly in machine learning and web development domains. Building a strong portfolio of collaborative work.',
-            skills: ['Open Source', 'Git', 'Collaboration', 'Code Review']
+            description: 'Active contributor to major open-source machine learning repositories. Fixed critical bugs in data processing pipelines and added documentation for new features. Collaborated with global developers to enhance code quality and maintainability.',
+            skills: ['Git', 'Open Source', 'Python', 'TensorFlow', 'Collaboration']
         },
         {
-            date: '2025',
-            title: 'Web Development Intern',
-            company: 'Rajni Tech Foundation',
-            description: 'Developed and maintained responsive web applications for educational platforms. Collaborated with the design team to implement UI/UX improvements and ensure cross-browser compatibility. Worked on both frontend and backend development, including API integration and database management.',
-            skills: ['HTML5/CSS3', 'JavaScript', 'React.js', 'Node.js', 'MongoDB', 'RESTful APIs', 'Git', 'Collaboration', 'Code Review', 'Documentation']
+            date: '2023 - Present',
+            title: 'B.Tech in Computer Science',
+            company: 'Lovely Professional University',
+            description: 'Specializing in Artificial Intelligence and Machine Learning. Maintained a CGPA of 7.6. Leading the university coding club and organizing hackathons. Completed capstone projects in Computer Vision and NLP.',
+            skills: ['Data Structures', 'Algorithms', 'Deep Learning', 'System Design', 'Leadership']
         }
     ];
 
     return (
-        <section className="experience" id="experience">
+        <section className="experience" id="experience" ref={sectionRef}>
             <div className="section-header">
                 <h2>Experience & Journey</h2>
-                <p className="section-subtitle">My professional and learning journey</p>
+                <p className="section-subtitle">My professional path and academic milestones</p>
             </div>
             <div className="timeline">
                 {experiences.map((exp, index) => (
