@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import profilePhoto from '../assets/photos/IMG_20250604_0938251.jpg';
+import React, { useState, useEffect, useRef } from 'react';
+import profilePhoto from '../assets/photos/profilephoto.jpg';
 
 const Hero = () => {
     const [text, setText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [loopNum, setLoopNum] = useState(0);
     const [typingSpeed, setTypingSpeed] = useState(150);
+    const heroRef = useRef(null);
 
     const phrases = [
         'Machine Learning Enthusiast',
@@ -41,8 +42,24 @@ const Hero = () => {
         return () => clearTimeout(timer);
     }, [text, isDeleting, loopNum, typingSpeed, phrases]);
 
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        if (heroRef.current) {
+            observer.observe(heroRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section className="hero" id="home">
+        <section className="hero" id="home" ref={heroRef}>
             <div className="hero-content">
                 <div className="profile-image">
                     <img src={profilePhoto} alt="Rahul's Profile Picture" loading="eager" />

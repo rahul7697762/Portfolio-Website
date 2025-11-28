@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import n1 from '../assets/photos/n1.png';
 import python from '../assets/photos/python.png';
 import sql from '../assets/photos/sql.png';
@@ -9,6 +9,7 @@ import n2 from '../assets/photos/n2.png';
 
 const Certificates = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const sectionRef = useRef(null);
 
     const certificates = [
         { title: 'Computer Networking', desc: 'Professional Networking Certification', date: '2024', img: n1 },
@@ -33,8 +34,24 @@ const Certificates = () => {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section id="certificates" className="certificates-section">
+        <section id="certificates" className="certificates-section" ref={sectionRef}>
             <div className="section-header">
                 <h2>Certificates & Achievements</h2>
                 <p className="section-subtitle">My Professional Certifications and Technical Achievements</p>
