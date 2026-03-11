@@ -12,10 +12,10 @@ const Certificates = () => {
     const sectionRef = useRef(null);
 
     const certificates = [
-        { title: 'Data Structures & Algorithms', desc: 'Iamneo (72 hours)', date: 'Dec 2024', img: dsa },
-        { title: 'Object Oriented Programming', desc: 'Iamneo (72 hours)', date: 'Dec 2024', img: cpp },
+        { title: 'Data Structures & Algorithms', desc: 'Iamneo · 72 hours', date: 'Dec 2024', img: dsa },
+        { title: 'Object Oriented Programming', desc: 'Iamneo · 72 hours', date: 'Dec 2024', img: cpp },
+        { title: 'Introduction to Hardware & Operating Systems', desc: 'Coursera', date: 'Sep 2024', img: n2 },
         { title: 'TCP/IP and Advanced Topics', desc: 'Coursera', date: 'Nov 2024', img: n1 },
-        { title: 'Hardware & Operating Systems', desc: 'Coursera', date: 'Sep 2024', img: n2 },
         { title: 'Python Programming', desc: 'Advanced Python Development', date: '2024', img: python },
         { title: 'SQL Database', desc: 'Database Management & SQL', date: '2024', img: sql },
         { title: 'C Programming', desc: 'Core C Programming', date: '2024', img: c },

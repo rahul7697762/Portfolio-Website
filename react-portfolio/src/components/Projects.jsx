@@ -100,36 +100,36 @@ const Projects = () => {
             status: 'Completed',
             statusClass: 'completed',
             icon: 'fa-seedling',
-            description: 'Engineered a multi-model crop recommendation pipeline using CatBoost and LightGBM (~89% accuracy). Integrated live Weather API and market price endpoints for context-aware insights.',
-            tech: ['React.js', 'Firebase', 'Flask API', 'Machine Learning', 'CatBoost'],
+            description: 'Production-grade crop recommendation engine using Random Forest & Decision Tree, achieving 89% prediction accuracy. Full-stack solution with Flask RESTful API + React.js frontend, Firebase authentication, and automated testing with 99.5% uptime during beta.',
+            tech: ['React.js', 'Firebase', 'Flask API', 'ML', 'Random Forest'],
             links: {
-                github: 'https://github.com/rahul7697762/Crop-Guidance-System.git',
-                demo: '#'
+                github: 'https://github.com/rahul7697762/Crop-Guidance-System',
+                demo: 'https://crop.prep4place.com/login'
             }
         },
         {
-            title: 'PrepWise AI Platform',
+            title: 'Prep4Place',
             category: 'web',
             image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
             status: 'Live',
             statusClass: 'completed',
             icon: 'fa-microphone',
-            description: 'AI-driven interview practice platform enabling real-time voice-based mock interviews using Vapi AI. Features dynamic performance dashboards and secure Firebase authentication.',
-            tech: ['Next.js', 'TypeScript', 'Gemini', 'Firebase', 'Vapi AI'],
+            description: 'Comprehensive interview prep platform with guided DSA practice sheets, AI-powered resume builder with ATS optimization, and real-time voice mock interviews using Vapi AI & Gemini LLM — scaled to 200+ active users.',
+            tech: ['Next.js', 'TypeScript', 'Gemini API', 'Firebase', 'Vapi AI'],
             links: {
-                github: '#',
-                demo: '#'
+                github: 'https://github.com/rahul7697762/Placement-Prepration',
+                demo: 'https://prep4place.com/'
             }
         },
         {
             title: 'Portfolio Website',
             category: 'web',
             image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
-            status: 'Completed',
+            status: 'Live',
             statusClass: 'completed',
             icon: 'fa-code',
-            description: 'A modern 3D portfolio website showcasing my skills and projects. Features interactive animations, responsive design, and seamless user experience with Three.js integration.',
-            tech: ['React.js', 'Three.js', 'Vite', 'CSS3'],
+            description: 'Modern portfolio with animated shader background (Three.js WebGL), GSAP animations, live GitHub & LeetCode stats, and fully responsive design.',
+            tech: ['React.js', 'Three.js', 'GSAP', 'Vite'],
             links: {
                 github: 'https://github.com/rahul7697762/Portfolio-Website.git',
                 demo: 'https://portfolio-website-nine-drab-37.vercel.app/'
@@ -142,7 +142,7 @@ const Projects = () => {
             status: 'Completed',
             statusClass: 'completed',
             icon: 'fa-calculator',
-            description: 'Chatbot website designed to help users solve mathematical problems and analyze images. Powered by Gemini\'s API and built with Python and Streamlit.',
+            description: 'AI chatbot to solve mathematical problems and analyze images. Powered by Gemini API with Python and Streamlit for an interactive interface.',
             tech: ['Python', 'Gemini API', 'Streamlit', 'Computer Vision'],
             links: {
                 github: 'https://github.com/rahul7697762/Ai-Math-Doubt-Solver',

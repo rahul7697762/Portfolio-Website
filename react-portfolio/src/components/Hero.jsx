@@ -162,8 +162,8 @@ const Hero = () => {
                     <p className="typing-text">{text}</p>
                     <div className="hero-tags">
                         <span className="tag"><i className="fas fa-robot"></i> AI Developer</span>
-                        <span className="tag"><i className="fas fa-code"></i> Full Stack Developer</span>
-                        <span className="tag achievement"><i className="fas fa-star"></i> LeetCode 1664</span>
+                        <span className="tag"><i className="fas fa-brain"></i> ML Engineer</span>
+                        <span className="tag achievement"><i className="fas fa-star"></i> LeetCode 300+ | Rating 1664</span>
                     </div>
                     <div className="hero-actions">
                         <a href="#contact" className="cta-button primary">
@@ -186,7 +186,7 @@ const Hero = () => {
                         </a>
                     </div>
                     <div className="skills-pills">
-                        {['Python', 'C++', 'React', 'Next.js', 'Machine Learning', 'LangChain', 'Docker', 'AWS'].map(skill => (
+                        {['Python', 'C++', 'LangChain', 'LLMs', 'React', 'Next.js', 'Flask', 'Scikit-learn'].map(skill => (
                             <span className="pill" key={skill}>{skill}</span>
                         ))}
                     </div>

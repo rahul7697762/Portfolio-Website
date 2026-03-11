@@ -115,25 +115,32 @@ const Experience = () => {
 
     const experiences = [
         {
-            date: 'Oct 2025 - Present',
-            title: 'AI Developer Intern',
+            date: 'Oct 2025 – Present',
+            title: 'AI Developer Intern → AI Executive',
             company: 'Bitlance Tech Hub Private Limited',
-            description: 'Built and integrated AI agents using n8n and Supabase to automate business workflows. Collaborated with product teams to enhance real-time decision systems, improving automation efficiency by 30%. Progressed into an AI Executive role, leading AI-driven automation initiatives and mentoring interns. Designed scalable multi-agent LLM pipelines with LangChain and Next.js.',
-            skills: ['n8n', 'React', 'LLMs', 'LangChain', 'Next.js', 'Supabase']
+            description: 'Pioneered and deployed multi-agent LLM systems using LangChain and n8n, automating business workflows and reducing manual operations by 40%. Integrated AI agents into production workflows with real-time decision systems, improving automation efficiency by 30%. Established comprehensive testing protocols ensuring 95%+ production reliability while mentoring 3 interns.',
+            skills: ['LangChain', 'LangGraph', 'n8n', 'LLMs', 'Next.js', 'Supabase']
         },
         {
-            date: 'Aug 2025 - Nov 2025',
-            title: 'Web Development Intern',
-            company: 'Rajni Tech Foundation',
-            description: 'Developed and maintained responsive web applications. Collaborated with the design team to implement UI/UX improvements. Worked on frontend development using React.js and ensured cross-browser compatibility.',
-            skills: ['React.js', 'HTML', 'CSS', 'JavaScript', 'Git']
+            date: '2023 – 2027',
+            title: 'B.Tech — Computer Science & Engineering',
+            company: 'Lovely Professional University, Phagwara, Punjab',
+            description: 'Pursuing Bachelor of Technology in Computer Science and Engineering. CGPA: 7.6. Focused on Data Structures & Algorithms, OOPS, Operating Systems, Computer Networks, Machine Learning, and AI.',
+            skills: ['DSA', 'OOPS', 'OS', 'CN', 'C++', 'Python', 'ML']
         },
         {
-            date: '2023 - 2027',
-            title: 'B.Tech in Computer Science',
-            company: 'Lovely Professional University',
-            description: 'Pursuing Bachelor of Technology in Computer Science and Engineering. Maintaining a CGPA of 7.6. Focusing on Data Structures, Algorithms, OOPS, Operating Systems, and Computer Networks.',
-            skills: ['DSA', 'OOPS', 'OS', 'CN', 'C++', 'Python']
+            date: '2021 – 2022',
+            title: '12th — Science Stream',
+            company: 'A.W Faez E-Aam Inter College, Amroha, Uttar Pradesh',
+            description: 'Completed 12th with Science stream. Percentage: 69.8%.',
+            skills: ['Physics', 'Chemistry', 'Mathematics']
+        },
+        {
+            date: '2019 – 2020',
+            title: '10th — Science Stream',
+            company: 'H.P Inter College, Amroha, Uttar Pradesh',
+            description: 'Completed 10th with Science stream. Percentage: 69.7%.',
+            skills: ['Mathematics', 'Science', 'English']
         }
     ];
 

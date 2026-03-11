@@ -120,40 +120,59 @@ const Skills = () => {
             skills: [
                 { name: 'Python', level: 90 },
                 { name: 'C++', level: 85 },
-                { name: 'JavaScript', level: 85 },
-                { name: 'SQL', level: 80 }
+                { name: 'SQL', level: 80 },
             ]
         },
         {
             title: 'ML & AI',
             icon: 'fa-brain',
             skills: [
-                { name: 'Machine Learning', level: 85 },
-                { name: 'LangChain & LLMs', level: 80 },
-                { name: 'RAG & Vector Search', level: 75 },
-                { name: 'Preprocessing', level: 85 }
+                { name: 'Data Preprocessing & Feature Engineering', level: 85 },
+                { name: 'Supervised Learning (RF, SVM, KNN, NB)', level: 85 },
+                { name: 'Unsupervised Learning (K-Means, DBSCAN)', level: 80 },
+                { name: 'CNN & Computer Vision', level: 75 },
             ]
         },
         {
-            title: 'Frameworks & Tools',
+            title: 'Tools & Frameworks',
             icon: 'fa-tools',
             skills: [
-                { name: 'React & Next.js', level: 85 },
-                { name: 'Node.js & Express', level: 80 },
-                { name: 'Docker', level: 75 },
-                { name: 'Git & GitHub', level: 90 }
+                { name: 'Scikit-learn, Pandas, NumPy', level: 88 },
+                { name: 'TensorFlow & Hugging Face', level: 78 },
+                { name: 'Git & GitHub', level: 90 },
+                { name: 'CI/CD & MLOps', level: 75 },
+            ]
+        },
+        {
+            title: 'Generative AI',
+            icon: 'fa-robot',
+            skills: [
+                { name: 'LangChain & LangGraph', level: 85 },
+                { name: 'RAG & Vector Search', level: 82 },
+                { name: 'Agentic AI & LLMs', level: 80 },
+                { name: 'Transformers', level: 78 },
             ]
         },
         {
             title: 'Backend & Cloud',
             icon: 'fa-server',
             skills: [
-                { name: 'Supabase & Firebase', level: 85 },
-                { name: 'MySQL & MongoDB', level: 80 },
-                { name: 'Flask API', level: 80 },
-                { name: 'Vercel & Railway', level: 85 }
+                { name: 'Flask & RESTful APIs', level: 82 },
+                { name: 'Node.js', level: 78 },
+                { name: 'Supabase, MySQL & MongoDB', level: 80 },
+                { name: 'Vector Databases', level: 75 },
             ]
-        }
+        },
+        {
+            title: 'Core Concepts',
+            icon: 'fa-layer-group',
+            skills: [
+                { name: 'Data Structures & Algorithms', level: 85 },
+                { name: 'Object-Oriented Programming', level: 88 },
+                { name: 'Operating Systems', level: 78 },
+                { name: 'Computer Networks', level: 78 },
+            ]
+        },
     ];
 
     return (
@@ -171,7 +190,6 @@ const Skills = () => {
                                 <div className="skill-item" key={idx}>
                                     <div className="skill-info">
                                         <span>{skill.name}</span>
-                                        <span>{skill.level}%</span>
                                     </div>
                                     <div className="skill-progress">
                                         <div
