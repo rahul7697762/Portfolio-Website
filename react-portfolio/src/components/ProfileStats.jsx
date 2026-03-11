@@ -1,9 +1,142 @@
-
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useProfileData } from '../hooks/useProfileData';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ProfileStats = () => {
-    const { leetcode, github, loading, error } = useProfileData();
+    const { leetcode, github, loading, error, leetcodeError, githubError, retry } = useProfileData();
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        if (loading || error) return;
+
+        const ctx = gsap.context(() => {
+            // Section header animation
+            gsap.from('.max-w-6xl .section-header h2', {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.max-w-6xl .section-header',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            // Cards reveal animation
+            const cards = gsap.utils.toArray('.bg-gray-800');
+            cards.forEach((card, index) => {
+                gsap.from(card, {
+                    y: 60,
+                    opacity: 0,
+                    scale: 0.95,
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.grid',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+
+                // Profile image animation inside cards
+                const avatar = card.querySelector('img');
+                if (avatar && avatar.classList.contains('rounded-full')) {
+                    gsap.from(avatar, {
+                        scale: 0,
+                        duration: 0.6,
+                        delay: 0.3 + index * 0.2,
+                        ease: 'back.out(1.7)',
+                        scrollTrigger: {
+                            trigger: '.grid',
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                        },
+                    });
+                }
+            });
+
+            // Stats counters animation for GitHub
+            const githubStats = gsap.utils.toArray('.bg-gray-700');
+            githubStats.forEach((stat, index) => {
+                const numberEl = stat.querySelector('.text-xl');
+                if (numberEl) {
+                    const targetValue = parseInt(numberEl.textContent) || 0;
+                    gsap.from({ value: 0 }, {
+                        value: targetValue,
+                        duration: 2,
+                        delay: 0.5 + index * 0.1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: '.grid',
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                        },
+                        onUpdate: function () {
+                            numberEl.textContent = Math.round(this.targets()[0].value);
+                        },
+                    });
+                }
+
+                gsap.from(stat, {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: 0.6 + index * 0.1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.grid',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+            });
+
+            // LeetCode progress bars animation
+            const progressBars = gsap.utils.toArray('.h-full.rounded-full');
+            progressBars.forEach((bar, index) => {
+                const width = bar.style.width;
+                gsap.fromTo(bar,
+                    { width: '0%' },
+                    {
+                        width: width,
+                        duration: 1.2,
+                        delay: 0.5 + index * 0.15,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: '.grid',
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                        },
+                    }
+                );
+            });
+
+            // GitHub contribution chart animation
+            const chartImg = document.querySelector('img[alt="GitHub Contributions"]');
+            if (chartImg) {
+                gsap.from(chartImg, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    delay: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.grid',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+            }
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, [loading, error, leetcode, github]);
 
     if (loading) {
         return (
@@ -15,14 +148,20 @@ const ProfileStats = () => {
 
     if (error) {
         return (
-            <div className="text-red-500 text-center p-4 bg-red-100 rounded-lg">
-                <p>Error: {error}</p>
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+                <p style={{ color: '#f87171', marginBottom: '1rem' }}>Both APIs are temporarily unavailable.</p>
+                <button
+                    onClick={retry}
+                    style={{ padding: '0.5rem 1.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer' }}
+                >
+                    🔄 Retry
+                </button>
             </div>
         );
     }
 
     return (
-        <div className="max-w-6xl mx-auto p-6 space-y-8">
+        <div className="max-w-6xl mx-auto p-6 space-y-8" ref={sectionRef}>
             <div className="section-header">
                 <h2 className="text-3xl font-bold text-center mb-8">Live Profile Stats</h2>
             </div>
@@ -78,8 +217,10 @@ const ProfileStats = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="p-6 text-center text-gray-400">
-                            No LeetCode data available.
+                        <div className="p-6 text-center" style={{ color: '#f87171' }}>
+                            {leetcodeError || 'No LeetCode data available.'}
+                            <br />
+                            <button onClick={retry} style={{ marginTop: '0.5rem', padding: '0.3rem 1rem', borderRadius: '6px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer', fontSize: '0.8rem' }}>🔄 Retry</button>
                         </div>
                     )}
                 </div>
@@ -139,8 +280,10 @@ const ProfileStats = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="p-6 text-center text-gray-400">
-                            No GitHub data available.
+                        <div className="p-6 text-center" style={{ color: '#f87171' }}>
+                            {githubError || 'No GitHub data available.'}
+                            <br />
+                            <button onClick={retry} style={{ marginTop: '0.5rem', padding: '0.3rem 1rem', borderRadius: '6px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer', fontSize: '0.8rem' }}>🔄 Retry</button>
                         </div>
                     )}
                 </div>

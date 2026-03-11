@@ -1,39 +1,138 @@
 import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+    const sectionRef = useRef(null);
     const statsRef = useRef(null);
 
+    // GSAP animations
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                    const counters = entry.target.querySelectorAll('.stat-number');
-                    counters.forEach(counter => {
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        let count = 0;
-                        const updateCount = () => {
-                            const increment = target / 100;
-                            if (count < target) {
-                                count += increment;
-                                counter.innerText = Math.ceil(count);
-                                setTimeout(updateCount, 20);
-                            } else {
-                                counter.innerText = target;
-                            }
-                        };
-                        updateCount();
+        const ctx = gsap.context(() => {
+            // Section header animation
+            gsap.from('.about .section-header h2', {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.about .section-header',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from('.about .section-subtitle', {
+                y: 30,
+                opacity: 0,
+                duration: 0.6,
+                delay: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.about .section-header',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            // About intro animation
+            gsap.from('.about-intro', {
+                y: 40,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.about-intro',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            // Stats items with stagger and counter animation
+            const statItems = gsap.utils.toArray('.stat-item');
+            statItems.forEach((item, index) => {
+                gsap.from(item, {
+                    y: 50,
+                    opacity: 0,
+                    scale: 0.9,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: '.about-stats',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                        onEnter: () => {
+                            // Animate counter
+                            const counter = item.querySelector('.stat-number');
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            gsap.to({ value: 0 }, {
+                                value: target,
+                                duration: 2,
+                                delay: index * 0.1,
+                                ease: 'power2.out',
+                                onUpdate: function () {
+                                    counter.textContent = Math.round(this.targets()[0].value);
+                                },
+                            });
+                        },
+                    },
+                });
+            });
+
+            // About sections (cards) with stagger
+            const aboutSections = gsap.utils.toArray('.about-section');
+            aboutSections.forEach((section, index) => {
+                gsap.from(section, {
+                    y: 60,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.about-details',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+
+                // Icon animation
+                const icon = section.querySelector('h3 i');
+                if (icon) {
+                    gsap.from(icon, {
+                        scale: 0,
+                        rotation: -180,
+                        duration: 0.5,
+                        delay: 0.3 + index * 0.15,
+                        ease: 'back.out(1.7)',
+                        scrollTrigger: {
+                            trigger: '.about-details',
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                        },
                     });
-                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
 
-        if (statsRef.current) {
-            observer.observe(statsRef.current);
-        }
+            // Education tags animation
+            gsap.from('.education-tags span', {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.4,
+                stagger: 0.1,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: '.education',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                },
+            });
 
-        return () => observer.disconnect();
+        }, sectionRef);
+
+        return () => ctx.revert();
     }, []);
 
     const handleCardMove = (e) => {
@@ -47,24 +146,37 @@ const About = () => {
         const rotateY = ((x - centerX) / centerX) * 10;
         const rotateX = -((y - centerY) / centerY) * 10;
 
-        card.style.setProperty('--rotate-x', `${rotateX}deg`);
-        card.style.setProperty('--rotate-y', `${rotateY}deg`);
+        gsap.to(card, {
+            rotateX: rotateX,
+            rotateY: rotateY,
+            duration: 0.3,
+            ease: 'power2.out',
+            transformPerspective: 1000,
+        });
     };
 
     const handleCardEnter = (e) => {
         const card = e.currentTarget;
-        card.style.transition = 'none';
+        gsap.to(card, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: 'power2.out',
+        });
     };
 
     const handleCardLeave = (e) => {
         const card = e.currentTarget;
-        card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
-        card.style.setProperty('--rotate-x', '0deg');
-        card.style.setProperty('--rotate-y', '0deg');
+        gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+        });
     };
 
     return (
-        <section className="about" id="about" ref={statsRef}>
+        <section className="about" id="about" ref={sectionRef}>
             <div className="section-header">
                 <h2>About Me</h2>
                 <p className="section-subtitle">Passionate about creating intelligent solutions</p>
@@ -76,7 +188,7 @@ const About = () => {
                     </p>
                 </div>
 
-                <div className="about-stats">
+                <div className="about-stats" ref={statsRef}>
                     {[
                         { target: 7, label: 'Projects Completed' },
                         { target: 10, label: 'Certifications' },

@@ -8,7 +8,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 
 import Footer from './components/Footer';
-import ThreeBackground from './components/ThreeBackground';
+import AnoAI from './components/ui/animated-shader-background';
 import CursorFollower from './components/CursorFollower';
 import ScrollProgress from './components/ScrollProgress';
 
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="app">
       <ScrollProgress />
-      <ThreeBackground />
+      <AnoAI />
       <CursorFollower />
       <Navbar />
 

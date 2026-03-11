@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import profilePhoto from '../assets/photos/IMG_20250604_0938251.jpg';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
     const [text, setText] = useState('');
@@ -7,6 +11,7 @@ const Hero = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [typingSpeed, setTypingSpeed] = useState(150);
     const heroRef = useRef(null);
+    const contentRef = useRef(null);
 
     const phrases = [
         'AI Developer',
@@ -16,6 +21,7 @@ const Hero = () => {
         'Tech Enthusiast'
     ];
 
+    // Typing effect
     useEffect(() => {
         const handleTyping = () => {
             const i = loopNum % phrases.length;
@@ -41,31 +47,115 @@ const Hero = () => {
         return () => clearTimeout(timer);
     }, [text, isDeleting, loopNum, typingSpeed, phrases]);
 
+    // GSAP animations
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
+        const ctx = gsap.context(() => {
+            // Main timeline for hero entrance
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+            // Profile image animation
+            tl.from('.profile-image', {
+                scale: 0,
+                opacity: 0,
+                duration: 1,
+                ease: 'elastic.out(1, 0.5)',
+            })
+                // Profile ring animation
+                // .from('.profile-ring', {
+                //     scale: 0.8,
+                //     opacity: 0,
+                //     duration: 0.6,
+                // }, '-=0.5')
+                // Status badge
+                // .from('.profile-status', {
+                //     y: 20,
+                //     opacity: 0,
+                //     duration: 0.5,
+                // }, '-=0.3')
+                // Hero text animations
+                .from('.greeting', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                }, '-=0.3')
+                .from('.name', {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.7,
+                }, '-=0.4')
+                .from('.typing-text', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.5,
+                }, '-=0.3')
+                // Hero tags with stagger
+                .from('.hero-tags .tag', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.5,
+                    stagger: 0.1,
+                }, '-=0.2')
+                // CTA buttons with stagger
+                .from('.hero-actions .cta-button', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.5,
+                    stagger: 0.15,
+                }, '-=0.3')
+                // Skill pills with cascade effect
+                .from('.skills-pills .pill', {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.08,
+                    ease: 'back.out(1.7)',
+                }, '-=0.2')
+                // Social links
+                .from('.hero-text .social-links a', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.1,
+                }, '-=0.3');
+
+            // Scroll indicator animation
+            gsap.to('.scroll-indicator', {
+                y: 10,
+                duration: 1.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'power1.inOut',
             });
-        }, { threshold: 0.1 });
 
-        if (heroRef.current) {
-            observer.observe(heroRef.current);
-        }
+            // Parallax effect on scroll
+            gsap.to('.hero-content', {
+                y: 100,
+                opacity: 0.3,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                },
+            });
 
-        return () => observer.disconnect();
+        }, heroRef);
+
+        return () => ctx.revert();
     }, []);
 
     return (
         <section className="hero" id="home" ref={heroRef}>
-            <div className="hero-content">
-                <div className="profile-image">
-                    <img src={profilePhoto} alt="Rahul's Profile Picture" loading="eager" />
-                    <div className="profile-ring"></div>
-                    <div className="profile-status">
-                        <span className="status-dot"></span>
-                        Available for work
+            <div className="hero-content" ref={contentRef}>
+                <div className="profile-image-container" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                    <div className="profile-image" style={{ width: '280px', height: '280px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '15px', position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
+                        <img src={profilePhoto} alt="Rahul's Profile Picture" loading="eager" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                        <div className="profile-ring"></div>
+                        <div className="profile-status" style={{ position: 'absolute', bottom: '0', right: '10%', background: 'rgba(45, 90, 39, 0.8)', padding: '8px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                            <span className="status-dot"></span>
+                            Available for work
+                        </div>
                     </div>
                 </div>
                 <div className="hero-text">

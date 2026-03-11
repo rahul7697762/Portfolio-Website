@@ -1,22 +1,120 @@
 import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
     const sectionRef = useRef(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
+        const ctx = gsap.context(() => {
+            // Section header animation
+            gsap.from('.experience .section-header h2', {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.experience .section-header',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
             });
-        }, { threshold: 0.1 });
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
+            gsap.from('.experience .section-subtitle', {
+                y: 30,
+                opacity: 0,
+                duration: 0.6,
+                delay: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.experience .section-header',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
 
-        return () => observer.disconnect();
+            // Timeline items animation
+            const timelineItems = gsap.utils.toArray('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                // Timeline dot animation
+                const dot = item.querySelector('.timeline-dot');
+                gsap.from(dot, {
+                    scale: 0,
+                    duration: 0.5,
+                    delay: index * 0.2,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+
+                // Timeline content slide in
+                const content = item.querySelector('.timeline-content');
+                gsap.from(content, {
+                    x: index % 2 === 0 ? -60 : 60,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+
+                // Date animation
+                const date = content.querySelector('.timeline-date');
+                gsap.from(date, {
+                    y: -20,
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: 0.3 + index * 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+
+                // Skills tags stagger
+                const skills = content.querySelectorAll('.timeline-skills span');
+                gsap.from(skills, {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.05,
+                    delay: 0.5 + index * 0.15,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+            });
+
+            // Timeline line drawing effect
+            gsap.from('.timeline::before', {
+                scaleY: 0,
+                transformOrigin: 'top',
+                duration: 1.5,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.timeline',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+        }, sectionRef);
+
+        return () => ctx.revert();
     }, []);
 
     const experiences = [
@@ -43,6 +141,18 @@ const Experience = () => {
         }
     ];
 
+    const handleCardHover = (e, isEnter) => {
+        const content = e.currentTarget.querySelector('.timeline-content');
+        if (content) {
+            gsap.to(content, {
+                scale: isEnter ? 1.02 : 1,
+                boxShadow: isEnter ? '0 20px 40px rgba(0,0,0,0.3)' : '0 10px 30px rgba(0,0,0,0.2)',
+                duration: 0.3,
+                ease: 'power2.out',
+            });
+        }
+    };
+
     return (
         <section className="experience" id="experience" ref={sectionRef}>
             <div className="section-header">
@@ -51,7 +161,12 @@ const Experience = () => {
             </div>
             <div className="timeline">
                 {experiences.map((exp, index) => (
-                    <div className="timeline-item" key={index}>
+                    <div
+                        className="timeline-item"
+                        key={index}
+                        onMouseEnter={(e) => handleCardHover(e, true)}
+                        onMouseLeave={(e) => handleCardHover(e, false)}
+                    >
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <div className="timeline-date">{exp.date}</div>

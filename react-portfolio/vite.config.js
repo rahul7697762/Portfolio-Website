@@ -11,6 +11,13 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/leetcode/, '/graphql'),
         secure: false,
+        configure: (proxy, _options) => {
+          proxy.on('proxyReq', (proxyReq, req, _res) => {
+            proxyReq.removeHeader('cookie');
+            proxyReq.setHeader('Referer', 'https://leetcode.com/');
+            proxyReq.setHeader('Origin', 'https://leetcode.com');
+          });
+        },
       },
     },
   },

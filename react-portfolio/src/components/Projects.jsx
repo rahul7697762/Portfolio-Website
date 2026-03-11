@@ -1,24 +1,96 @@
 import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
     const [filter, setFilter] = useState('all');
     const sectionRef = useRef(null);
+    const gridRef = useRef(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
+        const ctx = gsap.context(() => {
+            // Section header animation
+            gsap.from('.projects .section-header h2', {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.projects .section-header',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
             });
-        }, { threshold: 0.1 });
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
+            gsap.from('.projects .section-subtitle', {
+                y: 30,
+                opacity: 0,
+                duration: 0.6,
+                delay: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.projects .section-header',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
 
-        return () => observer.disconnect();
+            // Filter buttons animation
+            gsap.from('.filter-btn', {
+                y: 20,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.projects-filter',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            // Project cards stagger animation
+            const projectCards = gsap.utils.toArray('.project-card');
+            projectCards.forEach((card, index) => {
+                gsap.from(card, {
+                    y: 80,
+                    opacity: 0,
+                    rotateX: 15,
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.projects-grid',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+            });
+
+        }, sectionRef);
+
+        return () => ctx.revert();
     }, []);
+
+    // Animate filter change
+    useEffect(() => {
+        if (gridRef.current) {
+            const cards = gridRef.current.querySelectorAll('.project-card');
+            gsap.fromTo(cards,
+                { opacity: 0, y: 30, scale: 0.95 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    ease: 'power3.out'
+                }
+            );
+        }
+    }, [filter]);
 
     const projects = [
         {
@@ -70,7 +142,7 @@ const Projects = () => {
             status: 'Completed',
             statusClass: 'completed',
             icon: 'fa-calculator',
-            description: 'Chatbot website designed to help users solve mathematical problems and analyze images. Powered by Gemini’s API and built with Python and Streamlit.',
+            description: 'Chatbot website designed to help users solve mathematical problems and analyze images. Powered by Gemini\'s API and built with Python and Streamlit.',
             tech: ['Python', 'Gemini API', 'Streamlit', 'Computer Vision'],
             links: {
                 github: 'https://github.com/rahul7697762/Ai-Math-Doubt-Solver',
@@ -91,29 +163,87 @@ const Projects = () => {
 
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateY = ((x - centerX) / centerX) * 10;
-        const rotateX = -((y - centerY) / centerY) * 10;
+        const rotateY = ((x - centerX) / centerX) * 12;
+        const rotateX = -((y - centerY) / centerY) * 12;
 
-        card.style.setProperty('--rotate-x', `${rotateX}deg`);
-        card.style.setProperty('--rotate-y', `${rotateY}deg`);
+        gsap.to(card, {
+            rotateX: rotateX,
+            rotateY: rotateY,
+            duration: 0.3,
+            ease: 'power2.out',
+            transformPerspective: 1000,
+        });
+
+        // Spotlight effect
         card.style.setProperty('--mouse-x', `${x}px`);
         card.style.setProperty('--mouse-y', `${y}px`);
     };
 
     const handleCardEnter = (e) => {
         const card = e.currentTarget;
-        card.style.transition = 'none';
         const content = card.querySelector('.project-content');
-        if (content) content.style.transform = 'translateZ(50px)';
+        const image = card.querySelector('.project-image img');
+
+        gsap.to(card, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: 'power2.out',
+        });
+
+        if (content) {
+            gsap.to(content, {
+                z: 50,
+                duration: 0.3,
+                ease: 'power2.out',
+            });
+        }
+
+        if (image) {
+            gsap.to(image, {
+                scale: 1.1,
+                duration: 0.5,
+                ease: 'power2.out',
+            });
+        }
     };
 
     const handleCardLeave = (e) => {
         const card = e.currentTarget;
-        card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
-        card.style.setProperty('--rotate-x', '0deg');
-        card.style.setProperty('--rotate-y', '0deg');
         const content = card.querySelector('.project-content');
-        if (content) content.style.transform = 'translateZ(30px)';
+        const image = card.querySelector('.project-image img');
+
+        gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+        });
+
+        if (content) {
+            gsap.to(content, {
+                z: 30,
+                duration: 0.5,
+                ease: 'power2.out',
+            });
+        }
+
+        if (image) {
+            gsap.to(image, {
+                scale: 1,
+                duration: 0.5,
+                ease: 'power2.out',
+            });
+        }
+    };
+
+    const handleFilterClick = (cat) => {
+        setFilter(cat);
+        // Animate filter button
+        gsap.to(`.filter-btn.active`, {
+            scale: 1,
+            duration: 0.2,
+        });
     };
 
     return (
@@ -127,13 +257,13 @@ const Projects = () => {
                     <button
                         key={cat}
                         className={`filter-btn ${filter === cat ? 'active' : ''}`}
-                        onClick={() => setFilter(cat)}
+                        onClick={() => handleFilterClick(cat)}
                     >
                         {cat === 'ml' ? 'AI & ML' : cat === 'web' ? 'Web Dev' : 'All Projects'}
                     </button>
                 ))}
             </div>
-            <div className="projects-grid">
+            <div className="projects-grid" ref={gridRef}>
                 {filteredProjects.map((project, index) => (
                     <div
                         className="project-card"
