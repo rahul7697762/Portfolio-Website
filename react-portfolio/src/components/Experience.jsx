@@ -38,79 +38,75 @@ const Experience = () => {
             // Timeline items animation
             const timelineItems = gsap.utils.toArray('.timeline-item');
             timelineItems.forEach((item, index) => {
-                // Timeline dot animation
                 const dot = item.querySelector('.timeline-dot');
-                gsap.from(dot, {
-                    scale: 0,
-                    duration: 0.5,
-                    delay: index * 0.2,
-                    ease: 'back.out(1.7)',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
-                });
+                if (dot) {
+                    gsap.from(dot, {
+                        scale: 0,
+                        duration: 0.5,
+                        delay: index * 0.2,
+                        ease: 'back.out(1.7)',
+                        clearProps: 'all',
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none',
+                        },
+                    });
+                }
 
-                // Timeline content slide in
                 const content = item.querySelector('.timeline-content');
-                gsap.from(content, {
-                    x: index % 2 === 0 ? -60 : 60,
-                    opacity: 0,
-                    duration: 0.8,
-                    delay: index * 0.15,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
-                });
+                if (content) {
+                    gsap.from(content, {
+                        x: index % 2 === 0 ? -60 : 60,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: index * 0.15,
+                        ease: 'power3.out',
+                        clearProps: 'all',
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none',
+                        },
+                    });
 
-                // Date animation
-                const date = content.querySelector('.timeline-date');
-                gsap.from(date, {
-                    y: -20,
-                    opacity: 0,
-                    duration: 0.5,
-                    delay: 0.3 + index * 0.15,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
-                });
+                    const date = content.querySelector('.timeline-date');
+                    if (date) {
+                        gsap.from(date, {
+                            y: -20,
+                            opacity: 0,
+                            duration: 0.5,
+                            delay: 0.3 + index * 0.15,
+                            ease: 'power3.out',
+                            clearProps: 'all',
+                            scrollTrigger: {
+                                trigger: item,
+                                start: 'top 85%',
+                                toggleActions: 'play none none none',
+                            },
+                        });
+                    }
 
-                // Skills tags stagger
-                const skills = content.querySelectorAll('.timeline-skills span');
-                gsap.from(skills, {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.4,
-                    stagger: 0.05,
-                    delay: 0.5 + index * 0.15,
-                    ease: 'back.out(1.7)',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
-                });
+                    const skills = content.querySelectorAll('.timeline-skills span');
+                    if (skills.length) {
+                        gsap.from(skills, {
+                            scale: 0.8,
+                            opacity: 0,
+                            duration: 0.4,
+                            stagger: 0.05,
+                            delay: 0.5 + index * 0.15,
+                            ease: 'back.out(1.7)',
+                            clearProps: 'all',
+                            scrollTrigger: {
+                                trigger: item,
+                                start: 'top 85%',
+                                toggleActions: 'play none none none',
+                            },
+                        });
+                    }
+                }
             });
-
-            // Timeline line drawing effect
-            gsap.from('.timeline::before', {
-                scaleY: 0,
-                transformOrigin: 'top',
-                duration: 1.5,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.timeline',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none',
-                },
-            });
+            // Note: .timeline::before is a CSS pseudo-element — GSAP cannot animate it.
 
         }, sectionRef);
 

@@ -59,34 +59,26 @@ const Hero = () => {
                 opacity: 0,
                 duration: 1,
                 ease: 'elastic.out(1, 0.5)',
+                clearProps: 'all',
             })
-                // Profile ring animation
-                // .from('.profile-ring', {
-                //     scale: 0.8,
-                //     opacity: 0,
-                //     duration: 0.6,
-                // }, '-=0.5')
-                // Status badge
-                // .from('.profile-status', {
-                //     y: 20,
-                //     opacity: 0,
-                //     duration: 0.5,
-                // }, '-=0.3')
                 // Hero text animations
                 .from('.greeting', {
                     y: 30,
                     opacity: 0,
                     duration: 0.6,
+                    clearProps: 'all',
                 }, '-=0.3')
                 .from('.name', {
                     y: 40,
                     opacity: 0,
                     duration: 0.7,
+                    clearProps: 'all',
                 }, '-=0.4')
                 .from('.typing-text', {
                     y: 20,
                     opacity: 0,
                     duration: 0.5,
+                    clearProps: 'all',
                 }, '-=0.3')
                 // Hero tags with stagger
                 .from('.hero-tags .tag', {
@@ -94,6 +86,7 @@ const Hero = () => {
                     opacity: 0,
                     duration: 0.5,
                     stagger: 0.1,
+                    clearProps: 'all',
                 }, '-=0.2')
                 // CTA buttons with stagger
                 .from('.hero-actions .cta-button', {
@@ -101,6 +94,7 @@ const Hero = () => {
                     opacity: 0,
                     duration: 0.5,
                     stagger: 0.15,
+                    clearProps: 'all',
                 }, '-=0.3')
                 // Skill pills with cascade effect
                 .from('.skills-pills .pill', {
@@ -109,6 +103,7 @@ const Hero = () => {
                     duration: 0.4,
                     stagger: 0.08,
                     ease: 'back.out(1.7)',
+                    clearProps: 'all',
                 }, '-=0.2')
                 // Social links
                 .from('.hero-text .social-links a', {
@@ -116,6 +111,7 @@ const Hero = () => {
                     opacity: 0,
                     duration: 0.4,
                     stagger: 0.1,
+                    clearProps: 'all',
                 }, '-=0.3');
 
             // Scroll indicator animation
@@ -178,7 +174,13 @@ const Hero = () => {
                             <i className="fas fa-eye"></i>
                             View Work
                         </a>
-                        <a href="https://drive.google.com/file/d/1ezQbnjycwuy_qZ6CbsFUy3FGDgbuVZJ9/view?usp=sharing" className="cta-button outline" download>
+                        <a
+                            href="https://czojdmudmetuihzlrkhk.supabase.co/storage/v1/object/public/resume/rahul_resume_updated%20(1).pdf"
+                            className="cta-button outline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download="Rahul_Resume.pdf"
+                        >
                             <i className="fas fa-download"></i>
                             Download CV
                         </a>

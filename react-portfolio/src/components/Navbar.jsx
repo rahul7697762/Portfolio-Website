@@ -26,36 +26,38 @@ const Navbar = () => {
     // GSAP navbar entrance animation
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Navbar slide down
-            gsap.from('.navigation', {
-                y: -100,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out',
-                delay: 0.2,
-            });
-
-            // Nav brand animation
+            // Animate nav-brand and nav-links scoped inside navRef
             gsap.from('.nav-brand', {
                 x: -30,
                 opacity: 0,
                 duration: 0.8,
                 ease: 'power3.out',
-                delay: 0.5,
+                delay: 0.3,
+                clearProps: 'all',
             });
 
-            // Nav links stagger
             gsap.from('.nav-links li', {
                 y: -20,
                 opacity: 0,
                 duration: 0.5,
                 stagger: 0.1,
                 ease: 'power3.out',
-                delay: 0.6,
+                delay: 0.4,
+                clearProps: 'all',
             });
 
             // Theme toggle — use CSS for initial visibility, no GSAP opacity/scale animation
         }, navRef);
+
+        // Animate the nav element itself using the ref directly (can't select root from context)
+        gsap.from(navRef.current, {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.2,
+            clearProps: 'all',
+        });
 
         return () => ctx.revert();
     }, []);
