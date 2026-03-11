@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import profilePhoto from '../assets/photos/IMG_20250604_0938251.jpg';
+import profilePhoto from '../assets/photos/profilephoto.jpg';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -175,7 +175,7 @@ const Hero = () => {
                             View Work
                         </a>
                         <a
-                            href="https://czojdmudmetuihzlrkhk.supabase.co/storage/v1/object/public/resume/rahul_resume_updated%20(1).pdf"
+                            href="https://czojdmudmetuihzlrkhk.supabase.co/storage/v1/object/public/resume/rahul_resume_updated%20(2).pdf"
                             className="cta-button outline"
                             target="_blank"
                             rel="noopener noreferrer"
