@@ -1,6 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+    Code2, Brain, Wrench, Bot, Server, Layers,
+    Database, Eye, TrendingUp, GitBranch, Search, Link,
+    Zap, Globe, Network, Box, Monitor, Filter,
+    BarChart2, Cpu, RefreshCw, Sparkles, Shuffle, HardDrive, Wifi
+} from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,7 +15,6 @@ const Skills = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Section header animation
             gsap.from('.skills .section-header h2', {
                 y: 50,
                 opacity: 0,
@@ -35,10 +40,8 @@ const Skills = () => {
                 },
             });
 
-            // Skill categories with stagger
             const skillCategories = gsap.utils.toArray('.skill-category');
             skillCategories.forEach((category, index) => {
-                // Category card reveal
                 gsap.from(category, {
                     y: 60,
                     opacity: 0,
@@ -52,24 +55,6 @@ const Skills = () => {
                     },
                 });
 
-                // Category icon animation
-                const icon = category.querySelector('h3 i');
-                if (icon) {
-                    gsap.from(icon, {
-                        scale: 0,
-                        rotation: -180,
-                        duration: 0.6,
-                        delay: 0.3 + index * 0.15,
-                        ease: 'back.out(1.7)',
-                        scrollTrigger: {
-                            trigger: '.skills-container',
-                            start: 'top 80%',
-                            toggleActions: 'play none none none',
-                        },
-                    });
-                }
-
-                // Progress bars animation
                 const progressBars = category.querySelectorAll('.progress');
                 progressBars.forEach((bar, barIndex) => {
                     const width = bar.style.width;
@@ -90,7 +75,6 @@ const Skills = () => {
                     );
                 });
 
-                // Skill items stagger
                 const skillItems = category.querySelectorAll('.skill-item');
                 skillItems.forEach((item, itemIndex) => {
                     gsap.from(item, {
@@ -116,61 +100,61 @@ const Skills = () => {
     const skillCategories = [
         {
             title: 'Languages',
-            icon: 'fa-code',
+            CategoryIcon: Code2,
             skills: [
-                { name: 'Python', level: 90 },
-                { name: 'C++', level: 85 },
-                { name: 'SQL', level: 80 },
+                { name: 'Python', level: 90, Icon: Code2 },
+                { name: 'C++', level: 85, Icon: Cpu },
+                { name: 'SQL', level: 80, Icon: Database },
             ]
         },
         {
             title: 'ML & AI',
-            icon: 'fa-brain',
+            CategoryIcon: Brain,
             skills: [
-                { name: 'Data Preprocessing & Feature Engineering', level: 85 },
-                { name: 'Supervised Learning (RF, SVM, KNN, NB)', level: 85 },
-                { name: 'Unsupervised Learning (K-Means, DBSCAN)', level: 80 },
-                { name: 'CNN & Computer Vision', level: 75 },
+                { name: 'Data Preprocessing & Feature Engineering', level: 85, Icon: Filter },
+                { name: 'Supervised Learning (RF, SVM, KNN, NB)', level: 85, Icon: TrendingUp },
+                { name: 'Unsupervised Learning (K-Means, DBSCAN)', level: 80, Icon: Shuffle },
+                { name: 'CNN & Computer Vision', level: 75, Icon: Eye },
             ]
         },
         {
             title: 'Tools & Frameworks',
-            icon: 'fa-tools',
+            CategoryIcon: Wrench,
             skills: [
-                { name: 'Scikit-learn, Pandas, NumPy', level: 88 },
-                { name: 'TensorFlow & Hugging Face', level: 78 },
-                { name: 'Git & GitHub', level: 90 },
-                { name: 'CI/CD & MLOps', level: 75 },
+                { name: 'Scikit-learn, Pandas, NumPy', level: 88, Icon: BarChart2 },
+                { name: 'TensorFlow & Hugging Face', level: 78, Icon: Zap },
+                { name: 'Git & GitHub', level: 90, Icon: GitBranch },
+                { name: 'CI/CD & MLOps', level: 75, Icon: RefreshCw },
             ]
         },
         {
             title: 'Generative AI',
-            icon: 'fa-robot',
+            CategoryIcon: Sparkles,
             skills: [
-                { name: 'LangChain & LangGraph', level: 85 },
-                { name: 'RAG & Vector Search', level: 82 },
-                { name: 'Agentic AI & LLMs', level: 80 },
-                { name: 'Transformers', level: 78 },
+                { name: 'LangChain & LangGraph', level: 85, Icon: Link },
+                { name: 'RAG & Vector Search', level: 82, Icon: Search },
+                { name: 'Agentic AI & LLMs', level: 80, Icon: Bot },
+                { name: 'Transformers', level: 78, Icon: Zap },
             ]
         },
         {
             title: 'Backend & Cloud',
-            icon: 'fa-server',
+            CategoryIcon: Server,
             skills: [
-                { name: 'Flask & RESTful APIs', level: 82 },
-                { name: 'Node.js', level: 78 },
-                { name: 'Supabase, MySQL & MongoDB', level: 80 },
-                { name: 'Vector Databases', level: 75 },
+                { name: 'Flask & RESTful APIs', level: 82, Icon: Globe },
+                { name: 'Node.js', level: 78, Icon: Server },
+                { name: 'Supabase, MySQL & MongoDB', level: 80, Icon: Database },
+                { name: 'Vector Databases', level: 75, Icon: HardDrive },
             ]
         },
         {
             title: 'Core Concepts',
-            icon: 'fa-layer-group',
+            CategoryIcon: Layers,
             skills: [
-                { name: 'Data Structures & Algorithms', level: 85 },
-                { name: 'Object-Oriented Programming', level: 88 },
-                { name: 'Operating Systems', level: 78 },
-                { name: 'Computer Networks', level: 78 },
+                { name: 'Data Structures & Algorithms', level: 85, Icon: Network },
+                { name: 'Object-Oriented Programming', level: 88, Icon: Box },
+                { name: 'Operating Systems', level: 78, Icon: Monitor },
+                { name: 'Computer Networks', level: 78, Icon: Wifi },
             ]
         },
     ];
@@ -182,27 +166,38 @@ const Skills = () => {
                 <p className="section-subtitle">My technical expertise and proficiency levels</p>
             </div>
             <div className="skills-container">
-                {skillCategories.map((category, index) => (
-                    <div className="skill-category" key={index}>
-                        <h3><i className={`fas ${category.icon}`}></i> {category.title}</h3>
-                        <div className="skills-list">
-                            {category.skills.map((skill, idx) => (
-                                <div className="skill-item" key={idx}>
-                                    <div className="skill-info">
-                                        <span>{skill.name}</span>
-                                        <span className="skill-percent">{skill.level}%</span>
-                                    </div>
-                                    <div className="skill-progress">
-                                        <div
-                                            className="progress"
-                                            style={{ width: `${skill.level}%` }}
-                                        ></div>
-                                    </div>
-                                </div>
-                            ))}
+                {skillCategories.map((category, index) => {
+                    const { CategoryIcon } = category;
+                    return (
+                        <div className="skill-category" key={index}>
+                            <h3>
+                                <CategoryIcon size={18} className="skill-cat-icon" />
+                                {category.title}
+                            </h3>
+                            <div className="skills-list">
+                                {category.skills.map((skill, idx) => {
+                                    const { Icon } = skill;
+                                    return (
+                                        <div className="skill-item" key={idx}>
+                                            <div className="skill-info">
+                                                <span className="skill-name-wrap">
+                                                    <Icon size={13} className="skill-item-icon" />
+                                                    {skill.name}
+                                                </span>
+                                            </div>
+                                            <div className="skill-progress">
+                                                <div
+                                                    className="progress"
+                                                    style={{ width: `${skill.level}%` }}
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </section>
     );
