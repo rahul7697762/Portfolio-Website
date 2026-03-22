@@ -190,6 +190,7 @@ const Skills = () => {
                                 <div className="skill-item" key={idx}>
                                     <div className="skill-info">
                                         <span>{skill.name}</span>
+                                        <span className="skill-percent">{skill.level}%</span>
                                     </div>
                                     <div className="skill-progress">
                                         <div

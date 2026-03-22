@@ -145,10 +145,10 @@ const Hero = () => {
         <section className="hero" id="home" ref={heroRef}>
             <div className="hero-content" ref={contentRef}>
                 <div className="profile-image-container" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                    <div className="profile-image" style={{ width: '280px', height: '280px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '15px', position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
+                    <div className="profile-image" style={{ width: '280px', height: '280px', borderRadius: '50%', background: 'rgba(34, 211, 238, 0.04)', backdropFilter: 'blur(10px)', border: '1px solid rgba(34, 211, 238, 0.15)', padding: '15px', position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(34,211,238,0.08)' }}>
                         <img src={profilePhoto} alt="Rahul's Profile Picture" loading="eager" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
                         <div className="profile-ring"></div>
-                        <div className="profile-status" style={{ position: 'absolute', bottom: '0', right: '10%', background: 'rgba(45, 90, 39, 0.8)', padding: '8px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                        <div className="profile-status" style={{ position: 'absolute', bottom: '0', right: '10%', background: 'rgba(6, 182, 212, 0.15)', padding: '8px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>
                             <span className="status-dot"></span>
                             Available for work
                         </div>
@@ -190,14 +190,14 @@ const Hero = () => {
                             <span className="pill" key={skill}>{skill}</span>
                         ))}
                     </div>
-                    <div className="social-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem' }}>
-                        <a href="https://www.linkedin.com/in/rahul1232/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '1.5rem' }}>
+                    <div className="social-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.8rem' }}>
+                        <a href="https://www.linkedin.com/in/rahul1232/" target="_blank" rel="noopener noreferrer" className="social-link-icon" title="LinkedIn">
                             <i className="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://github.com/rahul7697762/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '1.5rem' }}>
+                        <a href="https://github.com/rahul7697762/" target="_blank" rel="noopener noreferrer" className="social-link-icon" title="GitHub">
                             <i className="fab fa-github"></i>
                         </a>
-                        <a href="mailto:rahulsaini11204@gmail.com" style={{ color: 'var(--text-secondary)', fontSize: '1.5rem' }}>
+                        <a href="mailto:rahulsaini11204@gmail.com" className="social-link-icon" title="Email">
                             <i className="fas fa-envelope"></i>
                         </a>
                     </div>

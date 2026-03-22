@@ -190,10 +190,10 @@ const About = () => {
 
                 <div className="about-stats" ref={statsRef}>
                     {[
-                        { target: 7, label: 'Projects Completed' },
-                        { target: 10, label: 'Certifications' },
-                        { target: 12, label: 'Technologies' },
-                        { target: 2, label: 'Years Learning' }
+                        { target: 7, label: 'Projects Completed', icon: 'fa-rocket' },
+                        { target: 10, label: 'Certifications', icon: 'fa-certificate' },
+                        { target: 12, label: 'Technologies', icon: 'fa-code' },
+                        { target: 2, label: 'Years Learning', icon: 'fa-graduation-cap' }
                     ].map((stat, index) => (
                         <div
                             className="stat-item"
@@ -202,6 +202,7 @@ const About = () => {
                             onMouseEnter={handleCardEnter}
                             onMouseLeave={handleCardLeave}
                         >
+                            <i className={`fas ${stat.icon} stat-icon-top`}></i>
                             <div className="stat-number" data-target={stat.target}>0</div>
                             <div className="stat-label">{stat.label}</div>
                         </div>
@@ -240,18 +241,7 @@ const About = () => {
                         </p>
                     </div>
 
-                    <div
-                        className="about-section"
-                        onMouseMove={handleCardMove}
-                        onMouseEnter={handleCardEnter}
-                        onMouseLeave={handleCardLeave}
-                    >
-                        <h3><i className="fas fa-code"></i> Frontend Development</h3>
-                        <p>
-                            On the frontend side, I craft responsive and dynamic web applications using modern technologies like React.js. I'm passionate about creating seamless user experiences with clean, efficient code and innovative design solutions.
-                        </p>
-                    </div>
-
+                    
                     <div
                         className="about-section"
                         onMouseMove={handleCardMove}
