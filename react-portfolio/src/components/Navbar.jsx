@@ -117,6 +117,32 @@ const Navbar = () => {
         <nav className={`navigation ${scrolled ? 'scrolled' : ''}`} ref={navRef}>
             <div className="nav-container">
                 <a href="#home" className="nav-brand" onClick={(e) => scrollToSection(e, 'home')}>
+                    <svg
+                        className="nav-logo-mark"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 36 36"
+                        width="28"
+                        height="28"
+                        aria-hidden="true"
+                    >
+                        <defs>
+                            <linearGradient id="nlg" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stopColor="#22d3ee" />
+                                <stop offset="100%" stopColor="#818cf8" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="36" height="36" rx="8" fill="#0d1117" />
+                        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="7.5"
+                            fill="none" stroke="url(#nlg)" strokeWidth="1.5" opacity="0.5" />
+                        {/* Stem */}
+                        <rect x="9" y="8" width="3.8" height="20" rx="1.2" fill="url(#nlg)" />
+                        {/* Bowl arc */}
+                        <path d="M12.8 8 Q23 8 23 14.5 Q23 21 12.8 21"
+                            fill="none" stroke="url(#nlg)" strokeWidth="3.8" strokeLinecap="round" />
+                        {/* Leg */}
+                        <line x1="12.8" y1="21" x2="25" y2="28"
+                            stroke="url(#nlg)" strokeWidth="3.8" strokeLinecap="round" />
+                    </svg>
                     Rahul
                 </a>
 

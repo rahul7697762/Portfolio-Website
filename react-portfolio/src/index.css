@@ -1746,6 +1746,17 @@ section.animate-in {
   -webkit-text-fill-color: transparent;
 }
 
+.nav-logo-mark {
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.2));
+}
+
+.nav-brand:hover .nav-logo-mark {
+  transform: rotate(-8deg) scale(1.08);
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.45));
+}
+
 /* Status dot pulse with cyan tint */
 .profile-status {
   border: 1px solid rgba(34, 211, 238, 0.3);
